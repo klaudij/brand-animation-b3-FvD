@@ -7,11 +7,6 @@
 Markdown is een simpele manier om HTML te schrijven.  
 Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
-Nb. De standaardstructuur en de spartaanse opmaak van de README.md zijn helemaal prima. Het gaat om de inhoud van je procesverslag. Besteedt de tijd voor pracht en praal aan je website.
-
-Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard open zetten. Fijn om dat steeds voor de relevante stuk(ken) te doen.
-
-
 
 ## Bronnenlijst
   1. -bron 1-
@@ -27,16 +22,26 @@ Nb. Door *open* toe te voegen aan een *details* element kun je deze standaard op
 
 
   ### Je storyboard:
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="storyboard voor opdracht 1">
+  <img src="readme-images/storyboard.jpg" width="375px" alt="storyboard voor opdracht 1">  <img src="readme-images/voorbeeld.jpg" width="375px" alt="Hoe het er ongeveer uit gaat zien">
 
 
   ### Je ambitie: 
   Aan deze technieken/punten wil ik werken:
   - CSS skills wat verbeteren
-  - Meer leren over animaties met css
-  - Het leren om een figuur te maken met puur CSS
-  - 
+  - Meer leren over animaties met css ( met name de verschillende mogelijkheden tot animeren)
+  - Het leren om een figuur(tje) te maken met puur CSS
+  - ::before & ::after
+  - Van een schets tot het werkend maken met html/css
+
  
+  
+  
+  
+  
+</details>
+<details open>
+  <summary>Voortgang</summary>
+
 </details>
 
 
