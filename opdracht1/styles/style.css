@@ -4,12 +4,10 @@
 /* FONTS */
 /*********/
 @font-face {
-	font-family: 'eenfont';
-	src: url('../fonts/eenfont.woff2') format('woff2'),
-			 url('../fonts/eenfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-
+font-family:"Fink Heavy";
+src: url('../fonts/FinkHeavy.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
 }
 
 
@@ -35,11 +33,34 @@ button, summary {
 /* CUSTOM PROPERTIES */
 /*********************/
 :root {
-	/* startje */
-	--color-main:#111;
+	/* basis */
 	--color-background:#eee;
+	--color-cirkel:#2ab673;
+	--color-font: #F2EAC3;
+	--color-blad:#00962B;
+
+	--font-size:2.3em;
+	--top-positie:105px;
+	--top-positie2:170px;
+
+
+	/* voor animaties */
+	--speed:2s;
+	--positie-speed:3s;
+	--zweven-speed:5.5s;
+}
+/* 
+
+@media (prefers-color-scheme: dark) {
+:root {
+	--color-background:rgb(126, 126, 126);
+	--color-cirkel:#2ab673;
+	--color-font: #F2EAC3;
+	--color-blad:#39a958;
 }
 
+
+  } */
 
 
 
@@ -48,10 +69,482 @@ button, summary {
 /* JOUW STYLING */
 /****************/
 body {
-  font-family:eenfont, sans-serif;
-  color:var(--color-main);
+  font-family: "Fink Heavy";
+  color:var(--color-font);
   background-color:var(--color-background);
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
-/* jouw code */
 
+/**** ANIMATIES ****/
+/* voor het draaien van de wereldbol */
+@keyframes rond{
+	0%{
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(1turn);
+	}
+}
+
+
+/* voor het verschijnen van de letters */
+@keyframes verschijnen{
+	0%{
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 100%;
+	}
+}
+
+/* voor het positioneren van de letters */
+@keyframes verplaatsen{
+	0%{
+		transform: translate(0,0) rotate(0);
+	}
+
+	100% {
+		transform: translate(0, var(--positie)) rotate(var(--rotate));
+	}
+}
+
+/* voor het laten zweven van de letters */
+@keyframes zweven {
+
+    0% { 
+	transform: translate(0, var(--positie)) rotate(var(--rotate)); 
+	}
+	50%{
+	transform: translate(0, var(--zweven)) rotate(var(--rotate));
+	}
+	100%{
+	transform: translate(0, var(--positie)) rotate(var(--rotate)); 
+	}    
+}
+
+ 
+/* voor het zweven van de blaadje */
+@keyframes blaadjeZweeft{
+	0%{
+	  opacity:0;
+	  top: -330px;
+	  transform:translateX(20px) rotate(0deg);
+	}
+	10%{
+	  opacity:1;
+	}
+	20%{
+	  transform:translateX(-20px) rotate(45deg);
+	}
+	40%{
+	  transform:translateX(-20px) rotate(90deg);
+	}
+	60%{
+	  transform:translateX(20px) rotate(135deg);
+	}
+	80%{
+	  transform:translateX(-20px) rotate(180deg);
+	}
+	100%{
+	  top: 110%;
+	  opacity:1;
+	  transform:translateX(-40px) rotate(225deg);
+	}
+  }
+
+
+
+
+
+
+
+h1 {
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	position: relative;
+	margin-top: 20%;
+	scale: 0.6;
+
+
+}
+
+/*** WERELDBOL ***/
+h1 section:first-of-type{
+	background-color: var(--color-cirkel);
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+
+
+	animation-name: rond;
+	animation-duration: 90s;
+	animation-iteration-count: infinite;
+	animation-timing-function:linear;
+	transition-duration: 0s;
+}
+
+h1 section svg{
+	width: 90px;
+}
+
+
+h1 section svg:nth-of-type(1){
+	position: absolute;
+	top: -70px;
+	left: 125px;
+}
+
+h1 section svg:nth-of-type(2){
+	position: absolute;
+	top: -22px;
+	left: 0px;
+	rotate: -40deg;
+}
+
+h1 section svg:nth-of-type(3){
+	position: absolute;
+	top: -22px;
+	left: 260px;
+	rotate: 40deg;
+}
+
+h1 section svg:nth-of-type(4){
+	position: absolute;
+	top: 80px;
+	left: 330px;
+	rotate: 80deg;
+}
+
+h1 section svg:nth-of-type(5){
+	position: absolute;
+	top: 220px;
+	left: 310px;
+	rotate: 120deg;
+}
+
+h1 section svg:nth-of-type(6){
+	position: absolute;
+	top: 318px;
+	left: 200px;
+	rotate: 160deg;
+}
+
+h1 section svg:nth-of-type(7){
+	position: absolute;
+	top: 316px;
+	left: 40px;
+	rotate: 210deg;
+}
+
+h1 section svg:nth-of-type(8){
+	position: absolute;
+	top: 220px;
+	left: -55px;
+	rotate: 246deg;
+}
+
+h1 section svg:nth-of-type(9){
+	position: absolute;
+	top: 90px;
+	left: -70px;
+	rotate: 283deg;
+}
+
+
+
+
+h1 span:nth-of-type(1) {
+	text-transform: uppercase;
+	position: absolute;
+	top: var(--top-positie);
+	left: 55px;
+	font-size: var(--font-size);
+
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen, zweven;
+	animation-duration:var(--speed), var(--positie-speed), var(--zweven-speed);
+	animation-iteration-count: 1, 1, infinite;
+	animation-delay: 0.8s, 2.5s, 5.3s;
+	animation-timing-function: linear, linear, ease-in-out;
+	animation-fill-mode: forwards, forwards, forwards;
+
+
+}
+
+h1 span:nth-of-type(2) {
+	position: absolute;
+	top: var(--top-positie);
+	left: 105px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen, zweven;
+	animation-duration:var(--speed), var(--positie-speed), var(--zweven-speed);
+	animation-iteration-count: 1, 1, infinite;
+	animation-delay: 0.5s, 2.5s, 5.3s;
+	animation-timing-function: linear, linear, ease-in-out;
+	animation-fill-mode: forwards, forwards, forwards;
+}
+
+h1 span:nth-of-type(3) {
+	position: absolute;
+	top:var(--top-positie);
+	left: 150px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen, zweven;
+	animation-duration:var(--speed), var(--positie-speed), var(--zweven-speed);
+	animation-iteration-count: 1, 1, infinite;
+	animation-delay: 0.9s, 2.5s, 5.3s;
+	animation-timing-function: linear, linear, ease-in-out;
+	animation-fill-mode: forwards, forwards, forwards;
+}
+
+h1 span:nth-of-type(4) {
+	position: absolute;
+	top: var(--top-positie);
+	left: 175px;
+	font-size: var(--font-size);
+
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 1.3s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(5) {
+	position: absolute;
+	top: var(--top-positie);
+	left: 232px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.3s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(6) {
+	position: absolute;
+	top: var(--top-positie);
+	left: 270px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 1.1s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(7) {
+	text-transform: uppercase;
+	position: absolute;
+	top: var(--top-positie2);
+	left: 30px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.4s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(8) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 75px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 1.5s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(9) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 110px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.6s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+
+h1 span:nth-of-type(10) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 150px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 1s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+
+h1 span:nth-of-type(11) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 180px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 1.8s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(12) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 210px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.7s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+h1 span:nth-of-type(13) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 234px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.3s, 2.5s;
+	animation-fill-mode: forwards, forwards;
+}
+
+
+h1 span:nth-of-type(14) {
+	position: absolute;
+	top: var(--top-positie2);
+	left: 274px;
+	font-size: var(--font-size);
+
+	opacity: 0;
+	animation-name: verschijnen, verplaatsen;
+	animation-duration:var(--speed), var(--positie-speed);
+	animation-iteration-count: 1, 1;
+	animation-delay: 0.7s, 2.5s;
+	animation-fill-mode: forwards,forwards;
+}
+
+
+
+/**** BLAD ****/
+h1 div {
+	position:relative;
+	width:10em;
+	height:10em;
+
+	position: fixed;
+	top: 0px;
+	opacity: 0;
+
+	animation:blaadjeZweeft 20s linear infinite ;
+	animation-delay:8s;
+	
+	
+}
+
+h1 div::before {
+	content:"";
+	
+	position:absolute;
+	
+	width:30%;
+	height:30%;
+	
+	background-color:var(--color-blad);
+	
+	border-radius:0 50% 100% 50%;
+	
+	-webkit-mask:radial-gradient(circle at 20% 100%, transparent 1em, black 1em);
+}
+	
+h1 div::after {
+	content:"";
+	
+	position:absolute;
+	right:56px;
+	bottom:225px;
+	
+	width:10%;
+	height:15%;
+	
+	background-color:var(--color-blad);
+	clip-path:polygon(20% 0, 80% 0, 100% 100%, 0 100%, 20% 0);
+	
+	transform:translatex(-10%) rotate(-50deg);
+}
+
+
+
+
+
+/***************************/
+/******* MEDIA QUERY *******/
+/***************************/
+
+@media screen and (min-width: 413px) {
+	h1 {
+		scale: 0.7;
+		transition: 0.5s;
+	
+	}
+}
+
+@media screen and (min-width: 506px) {
+	h1 {
+		scale: 0.8;
+		transition: 0.5s;
+	
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	h1 {
+		scale: 1;
+		transition: 0.5s;
+	}
+
+}
