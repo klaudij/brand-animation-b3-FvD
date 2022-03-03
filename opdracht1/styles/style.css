@@ -89,13 +89,18 @@ button, summary {
 	}
 }
 
-
+@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
+    .chrome {
+		--top-positie:100px;
+		--top-positie2:165px;
+    }
+}
 
 /****************/
 /**** STYLING ***/
 /****************/
 body {
-  font-family: "Fink Heavy";
+  font-family: "Fink Heavy",'Podkova', serif;
   color:var(--color-font);
   background-color:var(--color-background);
 
@@ -196,7 +201,7 @@ h1 {
 	border-radius: 50%;
 	position: relative;
 	margin-top: 20%;
-	scale: 0.6;
+	transform: scale(0.6);
 
 
 }
@@ -240,7 +245,7 @@ h1 section svg:nth-of-type(2){
 	position: absolute;
 	top: -22px;
 	left: 0px;
-	rotate: -40deg;
+	transform: rotate(-40deg);
 
 
 	opacity: 0;
@@ -256,7 +261,7 @@ h1 section svg:nth-of-type(3){
 	position: absolute;
 	top: -22px;
 	left: 260px;
-	rotate: 40deg;
+	transform: rotate(40deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -271,7 +276,7 @@ h1 section svg:nth-of-type(4){
 	position: absolute;
 	top: 80px;
 	left: 330px;
-	rotate: 80deg;
+	transform: rotate(80deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -286,7 +291,7 @@ h1 section svg:nth-of-type(5){
 	position: absolute;
 	top: 220px;
 	left: 310px;
-	rotate: 120deg;
+	transform: rotate(120deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -301,7 +306,7 @@ h1 section svg:nth-of-type(6){
 	position: absolute;
 	top: 318px;
 	left: 200px;
-	rotate: 160deg;
+	transform: rotate(160deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -316,7 +321,7 @@ h1 section svg:nth-of-type(7){
 	position: absolute;
 	top: 316px;
 	left: 40px;
-	rotate: 210deg;
+	transform: rotate(210deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -331,7 +336,7 @@ h1 section svg:nth-of-type(8){
 	position: absolute;
 	top: 220px;
 	left: -55px;
-	rotate: 246deg;
+	transform: rotate(246deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -346,7 +351,7 @@ h1 section svg:nth-of-type(9){
 	position: absolute;
 	top: 90px;
 	left: -70px;
-	rotate: 283deg;
+	transform: rotate(283deg);
 
 	opacity: 0;
 	animation-name: verschijnen;
@@ -709,21 +714,21 @@ h1 div::after {
 
 @media screen and (min-width: 25em) {
 	h1 {
-		scale: 0.7;
+		transform: scale(0.7);
 	
 	}
 }
 
 @media screen and (min-width: 32em) {
 	h1 {
-		scale: 0.8;
+		transform: scale(0.8);
 	
 	}
 }
 
 @media screen and (min-width: 64em) {
 	h1 {
-		scale: 1.1;
+		transform: scale(1.1);
 		
 	}
 
