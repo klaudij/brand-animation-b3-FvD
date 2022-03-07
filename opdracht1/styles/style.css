@@ -144,7 +144,8 @@ summary {
 @keyframes blaadjeZweeft {
   0% {
     opacity: 0;
-    transform: translateX(20px) rotate(0deg);
+    transform: translateX(20px) rotate(0deg)
+	;
   }
 
   10% {
@@ -156,7 +157,7 @@ summary {
   }
 
   40% {
-    transform: translateX(-20px) rotate(90deg);
+    transform: translateX(-20px) rotate(90deg) ;
   }
 
   60% {
@@ -170,7 +171,7 @@ summary {
   100% {
     top: 130%;
     opacity: 1;
-    transform: translateX(-50px) rotate(225deg);
+    transform: translateX(-50px) rotate(220deg) ;
   }
 }
 
