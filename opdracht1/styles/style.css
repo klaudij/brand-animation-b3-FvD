@@ -4,732 +4,728 @@
 /* FONTS */
 /*********/
 @font-face {
-	font-family: 'eenfont';
-	src: url('../fonts/eenfont.woff2') format('woff2'),
-			 url('../fonts/eenfont.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-
+  font-family: "eenfont";
+  src: url("../fonts/eenfont.woff2") format("woff2"),
+    url("../fonts/eenfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-font-family:"Fink Heavy";
-src: url('../fonts/FinkHeavy.ttf') format('truetype');
-font-weight: normal;
-font-style: normal;
+  font-family: "Fink Heavy";
+  src: url("../fonts/FinkHeavy.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
-
-
-
-
 
 /**************/
 /* CSS REMEDY */
 /**************/
-*, *::after, *::before {
-  box-sizing:border-box;  
-  
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-button, summary {
-	cursor: pointer;
+button,
+summary {
+  cursor: pointer;
 }
-
-
-
-
 
 /*********************/
 /* CUSTOM PROPERTIES */
 /*********************/
 :root {
-	/* basis */
-	--color-background:#eee;
+  /* basis */
+  /* --color-background:#eee;
 	--color-cirkel:#2ab673;
 	--color-font: #F2EAC3;
-	--color-blad:#00962B;
-	/* --color-background:rgb(126, 126, 126);
-	--color-cirkel:#2ab673;
-	--color-font: #F2EAC3;
-	--color-blad:#39a958; */
+	--color-blad:#00962B; */
+  --color-background: #1b1d24;
+  --color-cirkel: #5d9d0b;
+  --color-font: #f2eac3;
+  --color-blad: #72eb3a;
 
-	/* basis positionering van de letters */
-	--font-size:2.3em;
-	--top-positie:110px;
-	--top-positie2:175px;
+  /* basis positionering van de letters */
+  --font-size: 2.3em;
+  --top-positie: 110px;
+  --top-positie2: 175px;
 
+  /* voor animaties */
+  --speed-cirkel: 120s;
+  --speed-op-svg: 0.9s;
 
-	/* voor animaties */
-	--speed-cirkel:120s;
-	--speed-op-svg:0.9s;
+  --speed-opacity: 2.2s;
+  --positie-speed: 3s;
+  --zweven-speed: 4s;
 
-	--speed-opacity:2.2s;
-	--positie-speed:3s;
-	--zweven-speed:4s;
-
-	--delay-positie:8.5s;
-	--delay-zweven:11.5s;
-	
+  --delay-positie: 8.5s;
+  --delay-zweven: 11.5s;
 }
-
 
 @media (prefers-color-scheme: light) {
-:root {
-	--color-background:#eee;
-	--color-cirkel:#2ab673;
-	--color-font: #F2EAC3;
-	--color-blad:#00962B;
+  :root {
+    --color-background: #eee;
+    --color-cirkel: #2ab673;
+    --color-font: #f2eac3;
+    --color-blad: #00962b;
+  }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --speed-cirkel: 90s;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .chrome {
+    --top-positie: 100px;
+    --top-positie2: 165px;
+  }
+}
+
+/**** ANIMATIES ****/
+/* voor het draaien van de wereldbol */
+@keyframes rond {
+  0% {
+    transform: rotate(0);
   }
 
-@media (prefers-reduced-motion: no-preference){
-	:root{
-		--speed-cirkel:90s;
-	}
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
-@media screen and (-webkit-min-device-pixel-ratio:0) and (min-resolution:.001dpcm) {
-    .chrome {
-		--top-positie:100px;
-		--top-positie2:165px;
-    }
+/* voor het verschijnen van de letters */
+@keyframes verschijnen {
+  0%,
+  60% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
 }
+
+/* voor het positioneren van de letters */
+@keyframes verplaatsen {
+  0% {
+    transform: translate(0, 0) rotate(0);
+    text-shadow: none;
+  }
+
+  100% {
+    transform: translate(0, var(--positie)) rotate(var(--rotate));
+    text-shadow: 2px 4px 11px rgb(19, 48, 25, 0.2);
+  }
+}
+
+/* voor het laten zweven van de letters */
+@keyframes zweven {
+  0% {
+    transform: translate(0, var(--positie)) rotate(var(--rotate));
+    text-shadow: 2px 4px 11px rgba(19, 48, 25, 0.2);
+  }
+
+  50% {
+    transform: translate(0, var(--zweven)) rotate(var(--rotate));
+    text-shadow: 2px 4px 11px rgba(19, 48, 25, 0.6);
+  }
+
+  100% {
+    transform: translate(0, var(--positie)) rotate(var(--rotate));
+    text-shadow: 2px 4px 11px rgba(19, 48, 25, 0.2);
+  }
+}
+
+/* voor het zweven van de blaadje */
+@keyframes blaadjeZweeft {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) rotate(0deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  20% {
+    transform: translateX(-20px) rotate(45deg);
+  }
+
+  40% {
+    transform: translateX(-20px) rotate(90deg);
+  }
+
+  60% {
+    transform: translateX(-40px) rotate(135deg);
+  }
+
+  80% {
+    transform: translateX(-45px) rotate(180deg);
+  }
+
+  100% {
+    top: 130%;
+    opacity: 1;
+    transform: translateX(-50px) rotate(225deg);
+  }
+}
+
+
+
+
+
 
 /****************/
 /**** STYLING ***/
 /****************/
 body {
-  font-family: "Fink Heavy",'Podkova', serif;
-  color:var(--color-font);
-  background-color:var(--color-background);
-
+  font-family: "Fink Heavy", "Podkova", serif;
+  color: var(--color-font);
+  background-color: var(--color-background);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-
-/**** ANIMATIES ****/
-/* voor het draaien van de wereldbol */
-@keyframes rond{
-	0%{
-		transform: rotate(0);
-	}
-
-	100% {
-		transform: rotate(1turn);
-	}
-}
-
-
-/* voor het verschijnen van de letters */
-@keyframes verschijnen{
-	0%,60%{
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 100%;
-	}
-}
-
-/* voor het positioneren van de letters */
-@keyframes verplaatsen{
-	0%{
-		transform: translate(0,0) rotate(0);
-		text-shadow: none;
-	}
-
-	100% {
-		transform: translate(0, var(--positie)) rotate(var(--rotate));
-		text-shadow:2px 4px 11px rgb(19, 48, 25, 0.2);
-	}
-}
-
-/* voor het laten zweven van de letters */
-@keyframes zweven {
-
-    0% { 
-	transform: translate(0, var(--positie)) rotate(var(--rotate)); 
-	text-shadow:2px 4px 11px rgba(19, 48, 25,0.2);
-	}
-	50%{
-	transform: translate(0, var(--zweven)) rotate(var(--rotate));
-	text-shadow:2px 4px 11px rgba(19, 48, 25,0.6);
-	}
-	100%{
-	transform: translate(0, var(--positie)) rotate(var(--rotate)); 
-	text-shadow:2px 4px 11px rgba(19, 48, 25,0.2);
-	}    
-}
-
- 
-/* voor het zweven van de blaadje */
-@keyframes blaadjeZweeft{
-	0%{
-	  opacity:0;
-	  transform:translateX(20px) rotate(0deg);
-	}
-	10%{
-	  opacity:1;
-	}
-	20%{
-	  transform:translateX(-20px) rotate(45deg);
-	}
-	40%{
-	  transform:translateX(-20px) rotate(90deg);
-	}
-	60%{
-	  transform:translateX(20px) rotate(135deg);
-	}
-	80%{
-	  transform:translateX(-20px) rotate(180deg);
-	}
-	100%{
-	  top: 110%;
-	  opacity:1;
-	  transform:translateX(-40px) rotate(225deg);
-	}
-  }
-
-
 h1 {
-	width: 350px;
-	height: 350px;
-	border-radius: 50%;
-	position: relative;
-	margin-top: 20%;
-	transform: scale(0.6);
-
-
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  position: relative;
+  margin-top: 20%;
+  transform: scale(0.6);
 }
 
 /*** WERELDBOL ***/
-h1 section:first-of-type{
-	background-color: var(--color-cirkel);
-	width: 350px;
-	height: 350px;
-	border-radius: 50%;
+h1 section:first-of-type {
+  background-color: var(--color-cirkel);
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
 
-
-	animation-name: rond;
-	animation-duration: var(--speed-cirkel);
-	animation-iteration-count: infinite;
-	animation-timing-function:linear;
-	animation-delay: 4.9s;
-	transition-duration: 0s;
+  animation-name: rond;
+  animation-duration: var(--speed-cirkel);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: 4.9s;
+  transition-duration: 0s;
 }
 
-h1 section svg{
-	width: 90px;
+h1 section svg {
+  width: 90px;
 }
 
-h1 section svg:nth-of-type(1){
-	position: absolute;
-	top: -70px;
-	left: 125px;
-
-
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 0s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+h1 section svg .cls-1 {
+  fill: var(--color-cirkel);
 }
 
-h1 section svg:nth-of-type(2){
-	position: absolute;
-	top: -22px;
-	left: 0px;
-	transform: rotate(-40deg);
+h1 section svg:nth-of-type(1) {
+  position: absolute;
+  top: -70px;
+  left: 125px;
 
-
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 4s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(3){
-	position: absolute;
-	top: -22px;
-	left: 260px;
-	transform: rotate(40deg);
+h1 section svg:nth-of-type(2) {
+  position: absolute;
+  top: -22px;
+  left: 0px;
+  transform: rotate(-40deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 0.5s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 4s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(4){
-	position: absolute;
-	top: 80px;
-	left: 330px;
-	transform: rotate(80deg);
+h1 section svg:nth-of-type(3) {
+  position: absolute;
+  top: -22px;
+  left: 260px;
+  transform: rotate(40deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 1s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 0.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(5){
-	position: absolute;
-	top: 220px;
-	left: 310px;
-	transform: rotate(120deg);
+h1 section svg:nth-of-type(4) {
+  position: absolute;
+  top: 80px;
+  left: 330px;
+  transform: rotate(80deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 1.5s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(6){
-	position: absolute;
-	top: 318px;
-	left: 200px;
-	transform: rotate(160deg);
+h1 section svg:nth-of-type(5) {
+  position: absolute;
+  top: 220px;
+  left: 310px;
+  transform: rotate(120deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 2s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 1.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(7){
-	position: absolute;
-	top: 316px;
-	left: 40px;
-	transform: rotate(210deg);
+h1 section svg:nth-of-type(6) {
+  position: absolute;
+  top: 318px;
+  left: 200px;
+  transform: rotate(160deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 2.5s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(8){
-	position: absolute;
-	top: 220px;
-	left: -55px;
-	transform: rotate(246deg);
+h1 section svg:nth-of-type(7) {
+  position: absolute;
+  top: 316px;
+  left: 40px;
+  transform: rotate(210deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 3s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 2.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-h1 section svg:nth-of-type(9){
-	position: absolute;
-	top: 90px;
-	left: -70px;
-	transform: rotate(283deg);
+h1 section svg:nth-of-type(8) {
+  position: absolute;
+  top: 220px;
+  left: -55px;
+  transform: rotate(246deg);
 
-	opacity: 0;
-	animation-name: verschijnen;
-	animation-duration:var(--speed-op-svg);
-	animation-iteration-count: 1;
-	animation-delay: 3.5s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 3s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
+h1 section svg:nth-of-type(9) {
+  position: absolute;
+  top: 90px;
+  left: -70px;
+  transform: rotate(283deg);
 
+  opacity: 0;
+  animation-name: verschijnen;
+  animation-duration: var(--speed-op-svg);
+  animation-iteration-count: 1;
+  animation-delay: 3.5s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
 
 /* Letter A */
 h1 span:nth-of-type(1) {
-	--positie:10px;
-	--rotate:-10deg;
-	--zweven:18px;
+  --positie: 10px;
+  --rotate: -10deg;
+  --zweven: 18px;
 
-	text-transform: uppercase;
-	position: absolute;
-	top: var(--top-positie);
-	left: 55px;
-	font-size: var(--font-size);
+  text-transform: uppercase;
+  position: absolute;
+  top: var(--top-positie);
+  left: 55px;
+  font-size: var(--font-size);
 
-
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.3s, var(--delay-positie),  var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
-
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.3s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter N */
 h1 span:nth-of-type(2) {
-	--positie:5px;
-	--rotate:-7deg;
-	--zweven:-7px;
+  --positie: 5px;
+  --rotate: -7deg;
+  --zweven: -7px;
 
-	position: absolute;
-	top: var(--top-positie);
-	left: 105px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie);
+  left: 105px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter I */
 h1 span:nth-of-type(3) {
-	--positie:9px;
-	--rotate:-5deg;
-	--zweven:17px;
+  --positie: 9px;
+  --rotate: -5deg;
+  --zweven: 17px;
 
-	position: absolute;
-	top:var(--top-positie);
-	left: 150px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie);
+  left: 150px;
+  font-size: var(--font-size);
 
-
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.4s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.4s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter M */
 h1 span:nth-of-type(4) {
-	--positie:5px;
-	--rotate:3deg;
-	--zweven:-1px;
+  --positie: 5px;
+  --rotate: 3deg;
+  --zweven: -1px;
 
+  position: absolute;
+  top: var(--top-positie);
+  left: 175px;
+  font-size: var(--font-size);
 
-
-	position: absolute;
-	top: var(--top-positie);
-	left: 175px;
-	font-size: var(--font-size);
-
-
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.8s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.8s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter A */
 h1 span:nth-of-type(5) {
-	--positie:3px;
-	--rotate:10deg;
-	--zweven:10px;
+  --positie: 3px;
+  --rotate: 10deg;
+  --zweven: 10px;
 
-	position: absolute;
-	top: var(--top-positie);
-	left: 232px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie);
+  left: 232px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 4.8s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 4.7s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter L */
 h1 span:nth-of-type(6) {
-	--positie:6px;
-	--rotate:8deg;
-	--zweven:0px;
+  --positie: 6px;
+  --rotate: 8deg;
+  --zweven: 0px;
 
-	position: absolute;
-	top: var(--top-positie);
-	left: 270px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie);
+  left: 270px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.6s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.6s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter C */
 h1 span:nth-of-type(7) {
-	--positie:5px;
-	--rotate:6deg;
-	--zweven:21px;
+  --positie: 5px;
+  --rotate: 6deg;
+  --zweven: 21px;
 
-	text-transform: uppercase;
-	position: absolute;
-	top: var(--top-positie2);
-	left: 30px;
-	font-size: var(--font-size);
+  text-transform: uppercase;
+  position: absolute;
+  top: var(--top-positie2);
+  left: 30px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 4.9s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 4.9s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter R */
 h1 span:nth-of-type(8) {
-	--positie:5px;
-	--rotate:-6deg;
-	-zweven:-2px;
+  --positie: 5px;
+  --rotate: -6deg;
+  -zweven: -2px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 75px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 75px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 6s, var(--delay-positie),var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 6s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter O */
 h1 span:nth-of-type(9) {
-	--positie:-6px;
-	--rotate:-5deg;
-	--zweven:-17px;
+  --positie: -6px;
+  --rotate: -5deg;
+  --zweven: -17px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 110px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 110px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.1s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.1s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter S */
 h1 span:nth-of-type(10) {
-	--positie:-5px;
-	--rotate:5deg;
-	--zweven:1px;
+  --positie: -5px;
+  --rotate: 5deg;
+  --zweven: 1px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 150px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 150px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.5s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.5s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter S*/
 h1 span:nth-of-type(11) {
-	--positie:5px;
-	--rotate:-2deg;
-	--zweven:-8px;
+  --positie: 5px;
+  --rotate: -2deg;
+  --zweven: -8px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 180px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 180px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 6.3s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 6.3s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter I */
 h1 span:nth-of-type(12) {
-	--positie:-5px;
-	--rotate:5deg;
-	--zweven:0px;
+  --positie: -5px;
+  --rotate: 5deg;
+  --zweven: 0px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 210px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 210px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.7s, var(--delay-positie),var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.7s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter N */
 h1 span:nth-of-type(13) {
-	--positie:3px;
-	--rotate:5deg;
-	--zweven:-4px;
+  --positie: 3px;
+  --rotate: 5deg;
+  --zweven: -4px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 234px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 234px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 4.8s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards, forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 4.8s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
 
 /* Letter G */
 h1 span:nth-of-type(14) {
-	--positie:-10px;
-	--rotate:-10deg;
-	--zweven:0px;
+  --positie: -10px;
+  --rotate: -10deg;
+  --zweven: 0px;
 
-	position: absolute;
-	top: var(--top-positie2);
-	left: 274px;
-	font-size: var(--font-size);
+  position: absolute;
+  top: var(--top-positie2);
+  left: 274px;
+  font-size: var(--font-size);
 
-	opacity: 0;
-	animation-name: verschijnen, verplaatsen, zweven;
-	animation-duration:var(--speed-opacity), var(--positie-speed), var(--zweven-speed);
-	animation-iteration-count: 1, 1, infinite;
-	animation-delay: 5.2s, var(--delay-positie), var(--delay-zweven);
-	animation-timing-function: linear, linear, ease-in-out;
-	animation-fill-mode: forwards,forwards, forwards;
+  opacity: 0;
+  animation-name: verschijnen, verplaatsen, zweven;
+  animation-duration: var(--speed-opacity), var(--positie-speed),
+    var(--zweven-speed);
+  animation-iteration-count: 1, 1, infinite;
+  animation-delay: 5.2s, var(--delay-positie), var(--delay-zweven);
+  animation-timing-function: linear, linear, ease-in-out;
+  animation-fill-mode: forwards, forwards, forwards;
 }
-
-
 
 /**** BLAD ****/
 h1 div {
-	position:relative;
-	width:10em;
-	height:10em;
+  position: relative;
+  width: 10em;
+  height: 10em;
 
-	position: fixed;
-	top: -290px;
-	opacity: 0;
+  position: fixed;
+  top: -290px;
+  opacity: 0;
 
-	animation:blaadjeZweeft 20s linear infinite;
-	animation-delay:7s;
-	
-	
+  animation: blaadjeZweeft 20s linear infinite;
+  animation-delay: 7.5s;
 }
 
 h1 div::before {
-	content:"";
-	
-	position:absolute;
-	
-	width:30%;
-	height:30%;
-	
-	background-color:var(--color-blad);
-	
-	border-radius:0 50% 100% 50%;
-	
-	background:-webkit-mask-radial-gradient(circle at 20% 100%, transparent 1em, black 1em);
-	background: radial-gradient(circle at 20% 100%, transparent 1em, var(--color-blad) 1em);
+  content: "";
 
+  position: absolute;
 
+  width: 30%;
+  height: 30%;
+
+  background-color: var(--color-blad);
+
+  border-radius: 0 50% 100% 50%;
+
+  background: -webkit-mask-radial-gradient(
+    circle at 20% 100%,
+    transparent 1em,
+    black 1em
+  );
+  background: radial-gradient(
+    circle at 20% 100%,
+    transparent 1em,
+    var(--color-blad) 1em
+  );
 }
-	
+
 h1 div::after {
-	content:"";
-	
-	position:absolute;
-	right:56px;
-	bottom:225px;
-	
-	width:10%;
-	height:15%;
-	
-	background-color:var(--color-blad);
-	clip-path:polygon(20% 0, 80% 0, 100% 100%, 0 100%, 20% 0);
-	
-	transform:translatex(-10%) rotate(-50deg);
+  content: "";
+
+  position: absolute;
+  right: 56px;
+  bottom: 225px;
+
+  width: 10%;
+  height: 15%;
+
+  background-color: var(--color-blad);
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%, 20% 0);
+
+  transform: translatex(-10%) rotate(-50deg);
 }
-
-
-
-
 
 /***************************/
 /******* MEDIA QUERY *******/
 /***************************/
 
 @media screen and (min-width: 25em) {
-	h1 {
-		transform: scale(0.7);
-	
-	}
+  h1 {
+    transform: scale(0.7);
+  }
 }
 
 @media screen and (min-width: 32em) {
-	h1 {
-		transform: scale(0.8);
-	
-	}
+  h1 {
+    transform: scale(0.8);
+  }
 }
 
 @media screen and (min-width: 64em) {
-	h1 {
-		transform: scale(1.1);
-		
-	}
-
+  h1 {
+    transform: scale(1.1);
+  }
 }
