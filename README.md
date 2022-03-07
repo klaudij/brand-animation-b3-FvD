@@ -10,8 +10,10 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 ## Bronnenlijst
   1. https://codepen.io/shooft/pen/oNoZQaQ?editors=1100
-  2. -bron 2-
-  3. -...-
+  2. https://www.ryadel.com/en/css3-media-query-target-only-ie-ie6-ie11-firefox-chrome-safari-edge/
+  3. https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateY()
+  4. https://codepen.io/uurrnn/pen/WNLVdN?editors=1100
+  5. 
 
 
 
@@ -39,10 +41,7 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   
   
 </details>
-<details open>
-  <summary>Voortgang</summary>
 
-</details>
 
 
 
