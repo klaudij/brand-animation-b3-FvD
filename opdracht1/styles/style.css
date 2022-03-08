@@ -169,7 +169,7 @@ summary {
   }
 
   100% {
-    top: 130%;
+    top: 100vh;
     opacity: 1;
     transform: translateX(-50px) rotate(220deg) ;
   }
@@ -666,7 +666,7 @@ h1 div {
   opacity: 0;
 
   animation: blaadjeZweeft 20s linear infinite;
-  animation-delay: 7.5s;
+  animation-delay: 16s;
 }
 
 h1 div::before {
