@@ -59,8 +59,21 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
   ### Dit ging goed/Heb ik geleerd: 
   Korte omschrijving met plaatje(s)
-
-  <img src="readme-images/custom-properties.png" width="300px" alt="custom property>
+  
+<img src="readme-images/custom-properties.png" width="350px" alt="custom property"> Wat ik geleerd heb is hoe voor meerdere elementen met behulp van custom properties maar 1 animatie hoeft te gebruiken.
+  
+  
+  
+  
+<img src="readme-images/meerdere-animaties.png" width="350px" alt="meerdere animaties achter elkaar"> Waar ik zelf even mee zat te worstelen maar uiteindelijk wel snel goed gekomen is is het gebruiken van meerdere animaties achter elkaar.
+  
+  
+ <img src="readme-images/before-after.png" width="350px" alt="::before & ::after"> Door de voorbeeld van Sanne heb ik wat beter beel gekregen voor het gebruiken van de ::before & ::after.
+  
+ <img src="readme-images/color-scheme.png" width="350px" alt="light/dark mode"> Wat ik heb geleerd is dat je ook op deze manier (met de @media ) de light en dark mode kan stijlen. Zelf heb ik het altijd met javascript gedaan, maar de @media is veeel makkelijker:)
+  
+  
+  <img src="readme-images/reduce-motion.png" width="350px" alt="light/dark mode"> Wat ik heb geleerd is dat je ook op deze manier (met de @media ) de light en dark mode kan stijlen. Zelf heb ik het altijd met javascript gedaan, maar de @media is veeel makkelijker:)
 
 
   ### Dit was lastig/Is niet gelukt:
