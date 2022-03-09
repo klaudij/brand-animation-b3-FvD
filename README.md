@@ -52,7 +52,7 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 
   ### Je uitkomst - karakteristiek screenshot(s):
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="uitomst opdracht 1">
+  <img src="readme-images/iphone-light.jpg" width="400px" alt="phone screen light mode">
 
 
   ### Dit ging goed/Heb ik geleerd: 
