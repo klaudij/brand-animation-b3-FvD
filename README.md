@@ -79,7 +79,10 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   ### Dit was lastig/Is niet gelukt:
   Korte omschrijving met plaatje(s)
 
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="bummer">
+ <img src="readme-images/animatie-blad.png" width="350px" alt="korte animatie voor het zeven van de blad"> Wat mij nog niet gelukt is om de animatie op het eind wat smoother te maken, in het begin lijkt het echt als of het blad zweeft, maar op het eind is dit wat minder.
+  
+ <img src="readme-images/font.png" width="350px" alt="font in chrome"> Op de een of andere manier wilt de font niet in chrome laden maar alleen wel in safari. Dus heb ik een extra font toegevoegd mocht de eerste niet laden. Maar toen zat ik weer met het probleem dat de positie van de letters niet helemaal goed stonden in chrome vanwege het gebruik maken van de andere font. Dus ik vond het nog best wel lastig om het nog alleen in chrome de positie van de letters aan te passen.
+  
 </details>
 
 
