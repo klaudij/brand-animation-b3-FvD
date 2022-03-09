@@ -52,7 +52,9 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 
   ### Je uitkomst - karakteristiek screenshot(s):
-  <img src="readme-images/iphone-light.jpg" width="400px" alt="phone screen light mode">
+  <img src="readme-images/iphone-light.png" width="300px" alt="phone screen light mode">  <img src="readme-images/iphone-dark.png" width="300px" alt="phone screen dark mode">
+  
+   <img src="readme-images/desktop-light.png" width="350px" alt="phone screen light mode">  <img src="readme-images/desktop-dark.png" width="350px" alt="phone screen light mode">
 
 
   ### Dit ging goed/Heb ik geleerd: 
