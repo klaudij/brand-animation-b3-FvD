@@ -73,7 +73,7 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
  <img src="readme-images/color-scheme.png" width="350px" alt="light/dark mode"> Wat ik heb geleerd is dat je ook op deze manier (met de @media ) de light en dark mode kan stijlen. Zelf heb ik het altijd met javascript gedaan, maar de @media is veeel makkelijker:)
   
   
-  <img src="readme-images/reduce-motion.png" width="350px" alt="light/dark mode"> Wat ik heb geleerd is dat je ook op deze manier (met de @media ) de light en dark mode kan stijlen. Zelf heb ik het altijd met javascript gedaan, maar de @media is veeel makkelijker:)
+  <img src="readme-images/reduce-motion.png" width="350px" alt="reduce motion"> Zelf wist ik niet dat je ook met de @media de reduce motion kunt veranderen/aanpassen
 
 
   ### Dit was lastig/Is niet gelukt:
