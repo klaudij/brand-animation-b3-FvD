@@ -99,10 +99,12 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
   ### Je ambitie: 
   Aan deze technieken/punten wil ik werken:
-  - punt 1
-  - punt 2
-  - nog een punt
-  - ...
+  - Hoe API werkt
+  - API gebruiken in mijn eigen opdracht
+  - Maken van een filter
+  - Serach bar gebruiken (en dat het daadwerkelik werkt)
+  - Javascript skills verbeteren
+  - microinteracties verwerken
 </details>
 
 
