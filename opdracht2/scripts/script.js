@@ -162,7 +162,7 @@ var teamHammer = new Hammer(myTeamSection);
 teamHammer.on("swipeleft", toThePokedex);
 
 // swipe right on Pokedex panel --> to My Team
-var pokedexHammer = new Hammer(thePokedexSection);
+var pokedexHammer = new Hammer(pokedexSection);
 pokedexHammer.on("swiperight", toMyTeam);
 
 
@@ -189,15 +189,14 @@ function toMyTeam() {
 //DRAG AND DROP IN "YOUR TEAM"
 ////////////////////////////////////////////////////
 //library: https://sortablejs.github.io/Sortable/
-// var options = {
-//   // de tijd van swappen in ms
-//   animation: 1000
-// }
 
-// var deLijst = document.getElementById('list');
-// var sortable = Sortable.create(deLijst, options);
+var options = {
+  animation: 1000
+}
 
 
+var deLijst = document.getElementById('list');
+var sortable = sortable.create(deLijst, options);
 
 
 
