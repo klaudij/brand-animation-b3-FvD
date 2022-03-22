@@ -136,7 +136,6 @@ myTeamHeading.addEventListener("click", toMyTeam);
 pokedexHeading.addEventListener("click", toThePokedex);
 
 
-
 ///////////////////
 /* EVENTS: PIJLTJES LINK EN RECHTS */
 ///////////////////
@@ -153,7 +152,6 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-
 ///////////////////
 /* EVENTS: SWIPE */
 ///////////////////
@@ -168,12 +166,9 @@ var pokedexHammer = new Hammer(thePokedexSection);
 pokedexHammer.on("swiperight", toMyTeam);
 
 
-
-
-
-/*********************/
-/* EVENTS AFHANDELEN */
-/*********************/
+///////////////////
+/* EVENT FUNCTIES */
+///////////////////
 function toThePokedex() { 
 	// active op de POKEDEX zetten
 	myTeamSection.classList.remove("tabActive");
