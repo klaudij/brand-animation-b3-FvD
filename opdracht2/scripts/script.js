@@ -47,7 +47,7 @@ searchBar.addEventListener('keyup', (e) => {
       	let html = `
         	<li draggable="true"> 
          		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          		<h2> ${pokemon.name}</h2>									
+          		<h3> ${pokemon.name}</h3>									
 			</li>
       	`;
 
@@ -89,7 +89,7 @@ async function getPokemon() {
       let html = `
         <li draggable="true"> 
           <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          <h2> ${pokemon.name}</h2>									
+          <h3> ${pokemon.name}</h3>									
         </li>
       `;
 
@@ -118,7 +118,73 @@ window.addEventListener('DOMContentLoaded', getPokemon);
 
 
 
+////////////////////////////////////////////////////
+//SWITCHEN VAN TABS TUSSEN TEAM EN POKEDEX
+////////////////////////////////////////////////////
+var myTeamSection = document.querySelector('#team');
+var myTeamHeading = document.querySelector('section#team h2');
+var pokedexSection = document.querySelector('#pokedex');
+var pokedexHeading = document.querySelector('section#pokedex h2');
 
+///////////////////
+/* EVENTS: CLICK AND TAP */
+///////////////////
+// click/tap op My Team tabje --> to My Team
+myTeamHeading.addEventListener("click", toMyTeam);
+
+// click/tap op The Pokedex tabje --> to The Pokedex
+pokedexHeading.addEventListener("click", toThePokedex);
+
+
+
+///////////////////
+/* EVENTS: PIJLTJES LINK EN RECHTS */
+///////////////////
+// klik op rechter/linker pijlte op de toetsenbord
+document.addEventListener("keydown", (e) => {
+	switch(e.code) {
+		case "ArrowRight":
+			toThePokedex();
+			break;
+		case "ArrowLeft":
+			toMyTeam();
+			break;
+	}
+});
+
+
+
+///////////////////
+/* EVENTS: SWIPE */
+///////////////////
+// Met de HAMMER.js library ----> https://hammerjs.github.io
+
+// swipe naar links op My Team panel --> to The Pokedex
+var teamHammer = new Hammer(myTeamSection);
+teamHammer.on("swipeleft", toThePokedex);
+
+// swipe right on Pokedex panel --> to My Team
+var pokedexHammer = new Hammer(thePokedexSection);
+pokedexHammer.on("swiperight", toMyTeam);
+
+
+
+
+
+/*********************/
+/* EVENTS AFHANDELEN */
+/*********************/
+function toThePokedex() { 
+	// active op de POKEDEX zetten
+	myTeamSection.classList.remove("tabActive");
+	pokedexSection.classList.add("tabActive");
+};
+	
+function toMyTeam() {
+	// active op de MY TEAM zetten
+	myTeamSection.classList.add("tabActive");
+	pokedexSection.classList.remove("tabActive");
+};
 
 
 

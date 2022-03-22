@@ -40,10 +40,13 @@ button, summary {
 	--color-background:#2F3D60;
 
 	--section-bg: #1B2747;
+	--section-bg-not-active:#191f32;
 	--empty-bg:#455681;
 	--button-color: #45ADFF; 
 
 	--pulse-color:rgba(250, 250, 250, 0.2);
+
+	--size-whitespace:1rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -74,14 +77,34 @@ button, summary {
   }
 
 
-/****************/
-/**** STYLING ***/
-/****************/
+/*********************/
+/***** STYLING ******/
+/*********************/
 body {
 font-family: 'Chivo', sans-serif;
   color:var(--color-main);
   
   background-color:var(--color-background);
+
+  display:grid;
+  grid-template-rows:min-content 1fr;
+}
+
+
+/****************/
+/******HEADER****/
+/****************/
+/* header {
+	margin: 0 0 100px 0;
+} */
+
+
+/****************/
+/******MAIN******/
+/****************/
+main {
+	position:relative;
+	display:grid;
 }
 
 h1 {
@@ -92,6 +115,11 @@ h1 {
 	margin: 35px 0 5px 0;
 }
 
+h2 {
+	font-family: 'Archivo Black', sans-serif;
+	font-size: 1.5rem;
+}
+
 p {
 	/* font-style: italic; */
 	text-align: center;
@@ -99,71 +127,76 @@ p {
 	margin-bottom: 35px;
 }
 
-h2 {
-	font-family: 'Archivo Black', sans-serif;
-	font-size: 1.5rem;
-}
 
 
 /****************/
-/******TABS******/
+/******LISTS*****/
 /****************/
-/******************
-/* Styling van de tabs */
-/* .tab {
-	overflow: hidden;
-	border-bottom: 1px solid #707070;
-	background-color: inherit;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-} */
-
-/******************
-/* Styling voor de buttons in de tabs */
-/* .tab button {
-	background-color: white;
-
-	border: 1px solid #707070;
-	outline: none;
-	cursor: pointer;
-	padding: 8px 0px;
-	width: 120px;
-	transition: 0.3s;
-	font-size: 1.1em;
-	margin: 0 3px;
-	border-top-right-radius: 15px;
-	border-top-left-radius: 15px;
-} */
-
-
-/******************
-/* Styling voor de buttons in active */
-/* .tab button.active {
-	background-color: #F6F6F6;
-  }
- */
-
-
-/*******************************/
-/* Styling content */
-/*******************************/
-/******************
 /* ALGEMEEN voor alle sections*/
 section {
 	background-color: var(--section-bg);
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-
-	padding: 20px 0 40px 0;
-	
 	border-radius: 10px;
 
+	position:relative;
+	grid-area:1/1/-1/-1;
+	padding: 20px 0 40px 0;
 	margin: 0 1.4rem 2rem 1.4rem;
+
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 }
+
+section.tabActive{
+	z-index: 100;
+}
+
+section:not(.tabActive) {
+	
+	background-color:var(--section-bg-not-active);
+}
+
+/********
+/* section titel */
+section h2 {
+	position:absolute;
+	bottom:100%;
+	width:calc(50vw - var(--size-whitespace) * .75);
+	max-width:10rem;
+	margin:0;
+	
+	background-color:inherit;
+	border-radius:.5em .5em 0 0;
+	
+	font-size:1.1em;
+	line-height:calc(var(--size-whitespace) * 2);
+	text-align:center;
+}
+
+
+section:first-of-type h2 {
+	/* net iets voorbij de helft vanaf rechts */
+	right:calc(50vw + var(--size-whitespace) * .25);
+}
+
+section:last-of-type h2 {
+	/* net iets voorbij de helft vanaf links */
+	left:calc(50vw + var(--size-whitespace) * .25);
+}
+
+section:not(.tabActive) h2 {
+	cursor:pointer;
+	font-size: 1em;
+	transition: 0.3s;
+}
+
+section:not(.tabActive) h2:hover {
+	opacity: 0.6;
+}
+
+
+
 
 /********
 /* ul*/
@@ -194,6 +227,13 @@ section ul li{
 	justify-content: center;
 	align-content: center;
 	border-radius: 20px;
+	transition: 0.4s;
+}
+
+section ul li:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+	
 }
 
 
@@ -205,8 +245,8 @@ section ul li{
 	
 } */
 
-section ul li h2 {
-	font-size:1.3em;
+section ul li h3 {
+	font-size:1.5rem;
 	text-align: center;
 
 	margin:0;
@@ -223,7 +263,6 @@ section ul li img{
 /* section:nth-of-type(1){
 	background-color: #d8d8d8;
 } */
-
 section:nth-of-type(1) div{
 	width: 100%;
 }
@@ -244,6 +283,8 @@ section:nth-of-type(1) ul:empty::after:hover{
 	opacity: 0.5;
 }
 
+/********
+/* RANDOMIZE TEAM BUTTON*/
 section:nth-of-type(1) button{
 	font-size: 1.1rem;
 	font-weight: 700;
@@ -262,12 +303,12 @@ section:nth-of-type(1) button:focus{
 	color: var(--section-bg);
 }
 
+
+
+
+
 /******************
 /* TWEEDE SECTION*/
-/* section:nth-of-type(2){
-	background-color: #576ff5;
-} */
-
 section:nth-of-type(2) ul:empty::after {
 	content:"No pokemon found";
 	text-align:center;
@@ -275,7 +316,7 @@ section:nth-of-type(2) ul:empty::after {
 }
 
 /********
-/* filters*/
+/* FILTERS*/
 section:nth-of-type(2) > div{
 	margin: 50px 0 0 0;
 	display:grid;
@@ -290,12 +331,12 @@ section:nth-of-type(2) div label{
 }
 
 /****
-/* filteren*/
+/* FILTEREN*/
 
 
 
 /****
-/* search bar*/
+/* SEARCH BAR*/
 section:nth-of-type(2) div input{
 	font-size: 0.9rem;
 
