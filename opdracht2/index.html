@@ -8,13 +8,56 @@
 	
 	<title>Opdracht 2: Interactie galore - Frontend voor Designers</title>
 	
+	<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
 	<link href="styles/style.css" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 </head>
 
 <body>
-	<h1>Opdracht 2</h1>
+	<h1>Team Planner</h1>
+	<p>Plan your own pokemon team!</p>
 
+
+	<!-- <div class="tab">
+		<button class="tabLinks" >Your team</button>
+		<button class="tabLinks" >Pokedex</button>
+	  </div> -->
+
+	<section id="team" class="tabContent">
+		<h2>Your team</h2>
+
+		<div>
+		<ul id="list favoriteList" class="container draggable"></ul>	
+		</div>
+
+
+		<button>Randomize Team</button>
+	</section>
+
+	<section id="pokedex" class="tabContent">
+		<h2>Pokedex</h2>
+
+		<div>
+			<div>
+				<label for="typeFilter">Type</label>
+			</div>
+
+
+			<div>
+				<label for="searchLabel">Search</label>
+				<input 
+					id="searchBar" 
+					name="searchBar" 
+					type="search" 
+					placeholder="by Pokemon name">
+			</div>
+		</div>
+
+		<ul id="otherList"  class="container">
+		</ul>
+
+	</section>
+	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 	<script src="scripts/script.js"></script>
 </body>
 	

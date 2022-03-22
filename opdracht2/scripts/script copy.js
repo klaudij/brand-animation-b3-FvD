@@ -15,9 +15,6 @@ var gesturedZone = youTeam;
 
 
 
-
-
-
 ////////////////////////////////////////////////////
 //VOOR DE SEARCH BAR
 ////////////////////////////////////////////////////
@@ -27,33 +24,16 @@ const searchBar = document.getElementById('searchBar');
 //Een reference naar alle pokemons 
 let allPokemon = [];
 
-let pokemonHTML = '';
+
 //keyup functie, wanneer user in searchbar typt
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
-    
-    // Pokemons filteren met de user input
+    console.log(allPokemon);
+    //.....
     const filteredPokemons = allPokemon.filter(aPokemon => {
-      return aPokemon.name.toLowerCase().includes(searchString);
+        return aPokemon.name.toLowerCase().includes(searchString);
     });
-
-	// Lijst legen
-	list.innerHTML = '';
-
-	// Loopen over de gefilterde pokemons 
-    filteredPokemons.forEach(pokemon => {
-
-		// List item per pokemon maken 
-      	let html = `
-        	<li draggable="true"> 
-         		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          		<h2> ${pokemon.name}</h2>									
-			</li>
-      	`;
-
-		// List item toevoegen aan de list
-		list.insertAdjacentHTML("beforeend", html);
-    });
+    console.log(filteredPokemons);
 });
 
 
@@ -61,41 +41,42 @@ searchBar.addEventListener('keyup', (e) => {
 //POKEMON API DOCUMENTATIE https://pokeapi.co
 ////////////////////////////////////////////////////
 //API URL https://pokeapi.co/api/v2/pokemon?limit=200&offset=0
-const URL = "https://pokeapi.co/api/v2/pokemon?limit=700&offset=0";
+const URL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
 //haalt lijst uit 2e section in HTML
 const list = document.querySelector("section:nth-of-type(2) ul");
+console.log(list);
 
+let pokemonHTML = '';
 //functie
 async function getPokemon() {
+ //vragen van de data uit de API
+  getData(URL).then(async(data) => {
+    console.log(data.results);
 
-  // Pokemon data ophalen uit de API
-  const pokemons = await getData(URL);
+    //array uit de data opslaan in een var
+    allPokemon = data.results;
+    //loop over elke pokemon in de lijst
+    let listItems = '';
+    await allPokemon.forEach(async(aPokemon) => {
+      let pokemon = '';
+      getData(aPokemon.url).then((data) => {
+        pokemon = data;
+        //De statische html voor een pokemon
+        pokemonHTML += `
+          <li draggable="true"> 
+            <img src="${data.sprites.front_default}" alt="${data.name}">
+            <h2> ${data.name}</h2>									
+          </li>
+        `;
+      });
+      listItems += pokemonHTML;
+    });
 
-  // loopen over elke pokemon in de lijst en in een collection opslaan met de goede data
-  const pokemonCollection = pokemons.results.map(async pokemonObject => {
-    const pokemon = await getData(pokemonObject.url);
-    return pokemon;
-  });
 
-  //loop over elke pokemon in de collection
-  pokemonCollection.forEach(pokemon => {
-
-    pokemon.then((pokemon) => {
-      
-      // De pokemon toeveogen aan de allPokemon list
-      allPokemon.push(pokemon);
-
-      // Voor elke pokemon een list item maken
-      let html = `
-        <li draggable="true"> 
-          <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          <h2> ${pokemon.name}</h2>									
-        </li>
-      `;
-
-      // De html van de pokemon toevoegen aan de ul
-      list.insertAdjacentHTML("beforeend", html);
-    })
+    console.log(listItems);
+    // console.log(listItems);
+    //Voegen van de HTML in een lijst
+    // list.innerHTML += listItems;
   });
 }
 
@@ -117,13 +98,6 @@ window.addEventListener('DOMContentLoaded', getPokemon);
 
 
 
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////
 //DRAG AND DROP IN "YOUR TEAM"
 ////////////////////////////////////////////////////
@@ -135,15 +109,6 @@ window.addEventListener('DOMContentLoaded', getPokemon);
 
 // var deLijst = document.getElementById('list');
 // var sortable = Sortable.create(deLijst, options);
-
-
-
-
-
-
-
-
-
 
 
 
