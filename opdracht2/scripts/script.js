@@ -1,21 +1,6 @@
 // JavaScript Document
 console.log("howdy");
 
-////////////////////////////////////////////////////
-// SWIPE TUSSEN DE 'YOUR TEAM' & 'POKEDEX' OP MOBIEL
-////////////////////////////////////////////////////
-var touchstartX = 0;
-var touchendX = 0;
-
-var youTeam = document.querySelector("body section#team");
-var pokedex = document.querySelector("body section#pokedex");
-
-var gesturedZone = youTeam;
-
-
-
-
-
 
 
 ////////////////////////////////////////////////////
@@ -26,35 +11,57 @@ var gesturedZone = youTeam;
 const searchBar = document.getElementById('searchBar');
 //Een reference naar alle pokemons 
 let allPokemon = [];
+console.log(allPokemon);
 
-let pokemonHTML = '';
+
 //keyup functie, wanneer user in searchbar typt
 searchBar.addEventListener('keyup', (e) => {
     const searchString = e.target.value.toLowerCase();
     
     // Pokemons filteren met de user input
     const filteredPokemons = allPokemon.filter(aPokemon => {
-      return aPokemon.name.toLowerCase().includes(searchString);
+    return aPokemon.name.toLowerCase().includes(searchString);
     });
 
 	// Lijst legen
-	list.innerHTML = '';
+  pokedexList.innerHTML = '';
 
 	// Loopen over de gefilterde pokemons 
     filteredPokemons.forEach(pokemon => {
 
 		// List item per pokemon maken 
       	let html = `
-        	<li draggable="true"> 
+        	<li draggable="true" class="${pokemon.types[0].type.name}"> 
          		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          		<h3> ${pokemon.name}</h3>									
+              <h3> ${pokemon.id}. ${pokemon.name}</h3>		
 			</li>
       	`;
 
 		// List item toevoegen aan de list
-		list.insertAdjacentHTML("beforeend", html);
+    pokedexList.insertAdjacentHTML("beforeend", html);
     });
 });
+
+
+
+
+////////////////////////////////////////////////////
+//VOOR HET FILTEREN OP TYPE
+////////////////////////////////////////////////////
+//Selecteren van de select
+var filter = document.querySelector('select');
+
+//functie voor het selecteren
+function filteren(e){
+console.log(e.target.value);
+
+pokedexList.dataset.filter = e.target.value;
+}
+
+//EVENT voor het filteren van de types met de select
+filter.addEventListener('change', filteren);
+
+
 
 
 ////////////////////////////////////////////////////
@@ -63,7 +70,7 @@ searchBar.addEventListener('keyup', (e) => {
 //API URL https://pokeapi.co/api/v2/pokemon?limit=200&offset=0
 const URL = "https://pokeapi.co/api/v2/pokemon?limit=700&offset=0";
 //haalt lijst uit 2e section in HTML
-const list = document.querySelector("section:nth-of-type(2) ul");
+const pokedexList = document.querySelector("section:nth-of-type(2) ul");
 
 //functie
 async function getPokemon() {
@@ -87,14 +94,14 @@ async function getPokemon() {
 
       // Voor elke pokemon een list item maken
       let html = `
-        <li draggable="true"> 
+        <li draggable="true" class="${pokemon.types[0].type.name}"> 
           <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          <h3> ${pokemon.name}</h3>									
+          <h3> ${pokemon.id}. ${pokemon.name}</h3>
         </li>
-      `;
-
+      `;       
+      // console.log(pokemon.types[0].type.name);
       // De html van de pokemon toevoegen aan de ul
-      list.insertAdjacentHTML("beforeend", html);
+      pokedexList.insertAdjacentHTML("beforeend", html);
     })
   });
 }
@@ -111,8 +118,52 @@ async function getData(URL) {
 }
 
 // start de functie
-// getPokemon();
 window.addEventListener('DOMContentLoaded', getPokemon);
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////
+//RANDOMIZE TEAM
+////////////////////////////////////////////////////
+// var randomizeButton = document.querySelector('section.tabActive button');
+
+// function randomize(){
+//   // List Pokémon that can be added to the team
+//   const slugs = allPokemon;
+
+
+// // If there are Pokémon available, add up to 6 random picks
+// if ( slugs.length > 0 ) {
+//     const teamSize = Math.min( 6, slugs.length );
+//     for ( let i = 0; i < teamSize; i++ ) {
+//         const idx = random( slugs.length );
+//         const slug = slugs[ idx ];
+//         populateTeamSlot( slug );
+        
+//         // Remove Pokémon from options
+//         slugs.splice( idx, 1 );
+//       }
+//     }
+// }
+
+// randomizeButton.addEventListener("click", randomize)
+
+
 
 
 
@@ -126,8 +177,9 @@ var myTeamHeading = document.querySelector('section#team h2');
 var pokedexSection = document.querySelector('#pokedex');
 var pokedexHeading = document.querySelector('section#pokedex h2');
 
+
 ///////////////////
-/* EVENTS: CLICK AND TAP */
+/* EVENTS: CLICK/TAP */
 ///////////////////
 // click/tap op My Team tabje --> to My Team
 myTeamHeading.addEventListener("click", toMyTeam);
@@ -184,57 +236,24 @@ function toMyTeam() {
 
 
 
-
-////////////////////////////////////////////////////
-//DRAG AND DROP IN "YOUR TEAM"
-////////////////////////////////////////////////////
-//library: https://sortablejs.github.io/Sortable/
-
-var options = {
-  animation: 1000
-}
-
-
-var deLijst = document.getElementById('list');
-var sortable = sortable.create(deLijst, options);
-
-
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////
 //DRAG AND DROP SHARED LIST
 ////////////////////////////////////////////////////
-const draggables = document.querySelectorAll('.draggable');
-const containers = document.querySelectorAll('.container');
+//library: https://sortablejs.github.io/Sortable/
+
+var teamList = document.getElementById('teamList');
+var dexList = document.getElementById('dexList');
+var sortable = Sortable.create(teamList);
+
+Sortable.create(teamList, {
+  animation: 200,
+  group: 'shared', // set both lists to same group
+  sort: true,
+});
+
+Sortable.create(dexList, {
+  group: 'shared',
+  sort: false
+});
 
 
-// draggables.forEach(draggable => {
-//   draggable.addEventListener('dragstart', () => {
-
-//     draggable.classList.add('dragging');
-//     console.log('drag start')
-//   })
-
-//   draggable.addEventListener('dragend', () => {
-
-//     draggable.classList.remove('dragging');
-//     console.log('drag end')
-//   })
-// })
-
-
-// containers.forEach(container => {
-//   container.addEventListener('dragover', e => {
-//     e.preventDefault()
-//     console.log('drag over');
-//     const draggable = document.querySelectorl('.dragging');
-//     container.appendChild(draggable);
-//   })
-// })

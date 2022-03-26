@@ -22,26 +22,46 @@
 	<main>
 		<section id="team" class="tabActive">
 			<h2 tabindex="0">My team</h2>
+			
 	
 			<div>
-			<ul id="list favoriteList" class="container draggable">
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>	
+			<ul id="teamList" class="facet" draggable="true"></ul>	
 			</div>
 	
 	
-			<button>Randomize Team</button>
+			<button id="randomizer">Randomize Team</button>
 		</section>
 	
 		<section id="pokedex">
 			<h2 tabindex="0">Pokedex</h2>
 	
 			<div>
-				<div>
-					<label for="typeFilter">Type</label>
+				<div id="tags">
+
+			
+					<label for="types">Types:</label>
+					<select name="Pokemon types" id="" >
+						<option value="" disabled selected>Select a Type</option>
+						<option value="all">All</option>
+						<option value="normal">Normal</option>
+						<option value="fire">Fire</option>
+						<option value="w ater">Water</option>
+						<option value="grass">Grass</option>
+						<option value="electric">Electric</option>
+						<option value="ice">Ice</option>
+						<option value="fighting">Fighting</option>
+						<option value="goison">Poison</option>
+						<option value="ground">Ground</option>
+						<option value="flying">Flying</option>
+						<option value="psychic">Psychic</option>
+						<option value="bug">Bug</option>
+						<option value="rock">Rock</option>
+						<option value="ghost">Ghost</option>
+						<option value="dark">Dark</option>
+						<option value="dragon">Dragon</option>
+						<option value="steel">Steel</option>
+						<option value="fairy">Fairy</option>
+					</select>
 				</div>
 	
 	
@@ -55,15 +75,15 @@
 				</div>
 			</div>
 	
-			<ul id="otherList"  class="container">
+			<ul id="dexList"  class="facet-list" draggable="true">
 			</ul>
 		</section>
 
 	</main>
 
 
+	<script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 	<script src="https://hammerjs.github.io/dist/hammer.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 	<script src="scripts/script.js"></script>
 </body>
 	
