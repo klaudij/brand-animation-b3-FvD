@@ -94,7 +94,7 @@ async function getPokemon() {
 
       // Voor elke pokemon een list item maken
       let html = `
-        <li draggable="true" class="${pokemon.types[0].type.name}"> 
+        <li draggable="true" class="${pokemon.types[0].type.name}" > 
           <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
           <h3> ${pokemon.id}. ${pokemon.name}</h3>
         </li>
@@ -122,17 +122,6 @@ window.addEventListener('DOMContentLoaded', getPokemon);
 
 
 
- 
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -140,30 +129,6 @@ window.addEventListener('DOMContentLoaded', getPokemon);
 ////////////////////////////////////////////////////
 //RANDOMIZE TEAM
 ////////////////////////////////////////////////////
-// var randomizeButton = document.querySelector('section.tabActive button');
-
-// function randomize(){
-//   // List Pokémon that can be added to the team
-//   const slugs = allPokemon;
-
-
-// // If there are Pokémon available, add up to 6 random picks
-// if ( slugs.length > 0 ) {
-//     const teamSize = Math.min( 6, slugs.length );
-//     for ( let i = 0; i < teamSize; i++ ) {
-//         const idx = random( slugs.length );
-//         const slug = slugs[ idx ];
-//         populateTeamSlot( slug );
-        
-//         // Remove Pokémon from options
-//         slugs.splice( idx, 1 );
-//       }
-//     }
-// }
-
-// randomizeButton.addEventListener("click", randomize)
-
-
 
 
 
@@ -237,23 +202,50 @@ function toMyTeam() {
 
 
 ////////////////////////////////////////////////////
-//DRAG AND DROP SHARED LIST
+//DRAG AND DROP SHARED LIST TUSSEN 'MY TEAM' EN 'POKEDEX'
 ////////////////////////////////////////////////////
 //library: https://sortablejs.github.io/Sortable/
 
 var teamList = document.getElementById('teamList');
 var dexList = document.getElementById('dexList');
-var sortable = Sortable.create(teamList);
+
+var messageNotice = document.getElementById('notice');
 
 Sortable.create(teamList, {
-  animation: 200,
-  group: 'shared', // set both lists to same group
+  group: {
+    name: 'teamList',
+    // functie voor limit pokemons in 'MY TEAM'
+    put: function message(e){
+      // wanneer je meer dan 6 pokemons in 'YOU TEAM' wilt plaatsen krijg je een message
+      if(e.el.children.length >=6){
+        messageNotice.style.display = 'block';      
+      }else if(e.el.children.length <= 6){
+        messageNotice.style.display = 'none'
+      }
+      return e.el.children.length <=5;
+    }
+  },
+  animation: 100,
   sort: true,
 });
 
 Sortable.create(dexList, {
-  group: 'shared',
+  group: {
+    name: 'dexList',
+    put: 'teamList',
+  },
+  animation: 100,
   sort: false
 });
 
 
+
+// code from: https://stackoverflow.com/questions/55738619/click-to-swap-elements-between-two-lists
+// $("#teamList").on("click",function() {
+//   $("#dexList").append($(this));
+
+// });
+
+// $("#dexList").on("click",function() {
+//   $("#teamList").append($(this));
+// });

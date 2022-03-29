@@ -423,6 +423,37 @@ section ul li img{
 section:nth-of-type(1){
 	padding: 3rem 0 0 0;
 }
+
+@keyframes notification {
+	0%,60% {
+	  opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+  }
+
+/* NOTICE MESSAGE*/
+section:nth-of-type(1) >p{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+	font-size: 1.2em;
+	color: var(--section-li-color);
+	position: relative;
+	animation: notification 3s forwards;
+	display: none;
+}
+section:nth-of-type(1) >p::after{
+	content: 'remove a pokemon from your team';
+	position: absolute;
+	font-size: .6em;
+	bottom: -1.5em;
+	left: 0;
+}
+
+
+
 section:nth-of-type(1) div{
 	width: 100%;
 }
@@ -463,6 +494,10 @@ section:nth-of-type(1)  #randomizer:hover {
 	color: var(--section-bg);
 }
 
+
+/* section:nth-of-type(1) #remove{
+
+} */
 
 
 
