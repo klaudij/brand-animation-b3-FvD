@@ -31,7 +31,7 @@ searchBar.addEventListener('keyup', (e) => {
 
 		// List item per pokemon maken 
       	let html = `
-        	<li draggable="true" class="${pokemon.types[0].type.name}"> 
+        	<li draggable="true" class="${pokemon.types[0].type.name}" ondblclick="remove(this)"> 
          		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
               <h3> ${pokemon.id}. ${pokemon.name}</h3>
               <button id="deleteP">X</button>		
@@ -95,7 +95,7 @@ async function getPokemon() {
 
       // Voor elke pokemon een list item maken
       let html = `
-        <li draggable="true" class="${pokemon.types[0].type.name}" > 
+        <li draggable="true" class="${pokemon.types[0].type.name}" ondblclick="remove(this)"> 
           <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
           <h3> ${pokemon.id}. ${pokemon.name}</h3>
           <button id="deleteP">X</button>		
@@ -203,31 +203,6 @@ function toMyTeam() {
 
 
 
-
-
-
-
-
-
-////////////////////////////////////////////////////
-//ADD/DELET POKEMON TO TEAM WITH CLICK FUNCTION
-////////////////////////////////////////////////////
-var deleteP = document.getElementById('deleteP');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////
 //DRAG AND DROP SHARED LIST TUSSEN 'MY TEAM' EN 'POKEDEX'
 ////////////////////////////////////////////////////
@@ -256,23 +231,29 @@ Sortable.create(teamList, {
   sort: true,
 });
 
-Sortable.create(dexList, {
+Sortable.create(pokedexList, {
   group: {
     name: 'dexList',
     put: 'teamList',
+    pull: 'clone'
   },
   animation: 100,
   sort: false
 });
 
 
+////////////////////////////////////////////////////
+//ADD/DELET POKEMON TO TEAM WITH CLICK FUNCTION
+////////////////////////////////////////////////////
+// link bron : https://www.codegrepper.com/code-examples/javascript/how+to+delete+an+item+on+click+in+js
+var deleteP = document.getElementById('deleteP');
+let togList = document.querySelector("section:nth-of-type(1) ul li")
 
-// code from: https://stackoverflow.com/questions/55738619/click-to-swap-elements-between-two-lists
-// $("#teamList").on("click",function() {
-//   $("#dexList").append($(this));
+//verwijderen van een pokemon uit 'MY TEAM' met double click
+function remove(e){
+  e.parentNode.removeChild(e);
+}
 
-// });
 
-// $("#dexList").on("click",function() {
-//   $("#teamList").append($(this));
-// });
+
+
