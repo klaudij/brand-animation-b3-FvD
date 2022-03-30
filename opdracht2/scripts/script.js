@@ -33,7 +33,8 @@ searchBar.addEventListener('keyup', (e) => {
       	let html = `
         	<li draggable="true" class="${pokemon.types[0].type.name}"> 
          		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-              <h3> ${pokemon.id}. ${pokemon.name}</h3>		
+              <h3> ${pokemon.id}. ${pokemon.name}</h3>
+              <button id="deleteP">X</button>		
 			</li>
       	`;
 
@@ -97,6 +98,7 @@ async function getPokemon() {
         <li draggable="true" class="${pokemon.types[0].type.name}" > 
           <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
           <h3> ${pokemon.id}. ${pokemon.name}</h3>
+          <button id="deleteP">X</button>		
         </li>
       `;       
       // console.log(pokemon.types[0].type.name);
@@ -197,6 +199,31 @@ function toMyTeam() {
 	myTeamSection.classList.add("tabActive");
 	pokedexSection.classList.remove("tabActive");
 };
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////
+//ADD/DELET POKEMON TO TEAM WITH CLICK FUNCTION
+////////////////////////////////////////////////////
+var deleteP = document.getElementById('deleteP');
+
+
+
+
+
+
+
+
+
+
+
 
 
 

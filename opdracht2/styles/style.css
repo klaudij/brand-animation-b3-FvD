@@ -1,7 +1,7 @@
 /* CSS Document */
 
 /*********/
-/* FONTS */
+/**FONTS**/
 /*********/
 @font-face {
 	font-family: 'eenfont';
@@ -14,10 +14,12 @@
 
 
 
+/***********************************************************************************
+
 
 
 /**************/
-/* CSS REMEDY */
+/**CSS REMEDY**/
 /**************/
 *, *::after, *::before {
   box-sizing:border-box;  
@@ -29,11 +31,12 @@ button, summary {
 }
 
 
+/***********************************************************************************
 
 
 
 /*********************/
-/* CUSTOM PROPERTIES */
+/**CUSTOM PROPERTIES**/
 /*********************/
 :root {
 	/* DARK MODE COLOR SCHEME  */
@@ -69,6 +72,7 @@ button, summary {
 	--size-whitespace:1rem;
 }
 
+/* VOOR DE LIGHT MODE COLOR SCHEME */
 @media (prefers-color-scheme: light) {
 	:root {
 	/* LGHT MODE COLOR SCHEME  */	
@@ -104,10 +108,15 @@ button, summary {
 }
 
 
-/*********************/
-/* ANIMATION */
-/*********************/
 
+/***********************************************************************************
+
+
+
+/*********************/
+/***** ANIMATION *****/
+/*********************/
+/* voor wanneer 'MY TEAM' LEEG is message*/
 @keyframes pulse-animation {
 	0% {
 	  box-shadow: 0 0 0 0px var(--pulse-color);
@@ -115,7 +124,22 @@ button, summary {
 	100% {
 	  box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
 	}
-  }
+}
+
+  /* voor wanneer 'MY TEAM' VOL zit message*/
+@keyframes notification {
+	0%,70% {
+	  opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+
+
+/***********************************************************************************
+
 
 
 /*********************/
@@ -171,6 +195,10 @@ p {
 
 
 
+/***********************************************************************************
+
+
+
 /****************/
 /******LISTS*****/
 /****************/
@@ -189,15 +217,6 @@ section {
 	flex-direction: column;
 }
 
-section.tabActive{
-	z-index: 100;
-}
-
-section:not(.tabActive) {
-	
-	background-color:var(--section-bg-not-active);
-}
-
 
 /* voor het swipen 'animatie' */
 section #team.linksSwipe {
@@ -212,12 +231,14 @@ section #pokedex.rechtsSwipe{
 	rotate(15deg);
 }
 
+section.tabActive{
+	z-index: 100;
+}
 
-
-
-
-
-
+section:not(.tabActive) {
+	
+	background-color:var(--section-bg-not-active);
+}
 
 
 /********
@@ -261,8 +282,6 @@ section:not(.tabActive) h2:hover {
 }
 
 
-
-
 /********
 /* ul*/
 section ul {
@@ -300,6 +319,182 @@ section ul li{
 section ul li:hover{
 	transform: scale(1.1);
 	cursor: grab;
+}
+
+
+section ul li h3 {
+	font-size:1.5rem;
+	text-align: center;
+
+	margin:0;
+}
+
+section ul li img{
+	height:8em;
+}
+
+
+
+/***********************************************************************************
+
+
+
+/******************
+/* EERSTE SECTION*/
+section:nth-of-type(1){
+	padding: 3rem 0 0 0;
+}
+
+/* NOTICE MESSAGE*/
+section:nth-of-type(1) >p{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+	font-size: 1.2em;
+	color: var(--section-li-color);
+	position: relative;
+	animation: notification 3s forwards;
+	display: none;
+}
+section:nth-of-type(1) >p::after{
+	content: 'remove a pokemon from your team';
+	position: absolute;
+	font-size: .6em;
+	bottom: -1.5em;
+	left: 0;
+}
+
+
+
+section:nth-of-type(1) div{
+	width: 100%;
+}
+
+/* WANNEER 'MY TEAM' LEEG IS KRIJG JE DIT TE ZIEN*/
+section:nth-of-type(1) ul:empty::after {
+	content:"Start by clicking or dragging your favorite pokemons in here!!";
+	text-align:center;
+	font-size:1.3em;
+
+	background-color: var(--empty-bg);
+	border-radius: 20px;
+	padding: 20px;
+
+	animation: pulse-animation 2s infinite;
+}
+
+section:nth-of-type(1) ul:empty:hover{
+	opacity: 0.6;
+}
+
+/* STYLING VAN DELETE BUTTON VOOR LI IN 'MY TEAM'*/
+section ul.list li #deleteP{
+	background-color: white;
+	border: none;
+	border-radius:50%;
+	position: absolute;
+	padding:0 0.5em;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	margin:0;
+	opacity: 0;
+	}
+	
+section ul.list  li:hover #deleteP{
+	opacity: 1;
+}
+	
+section ul.list li:hover #deleteP:hover{
+	background-color: red;
+	text-shadow: 2px 2px 3px rgb(235, 216, 216);
+	color: white;
+}
+
+/* pokemons in de pokedex krijgen geen delete button*/
+section:nth-of-type(2) ul.list li #deleteP{
+	display: none;
+}
+
+
+/********
+/* RANDOMIZE TEAM BUTTON*/
+section:nth-of-type(1) #randomizer{
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: var(--button-color);
+
+	background-color: var(--section-bg);
+	border: 2px solid var(--button-color);
+	border-radius: 10px;
+	padding: 19px;
+	margin: 2rem 0 2em 0;
+	transition: 0.4s;
+}
+
+section:nth-of-type(1)  #randomizer:hover {
+	box-shadow: inset 0 0 0 3em var(--button-color);
+	color: var(--section-bg);
+}
+
+
+
+
+/***********************************************************************************
+
+
+
+
+/******************
+/* TWEEDE SECTION*/
+/* WANNEER IN DE POKEDEX GEEN RESULTATEN TE VINDEN ZIJN*/
+section:nth-of-type(2) ul:empty::after {
+	margin-top: 3em;
+	content:"No pokemon found";
+	text-align:center;
+	font-size:1.3em;
+}
+
+
+/********
+/* FILTERS*/
+section:nth-of-type(2) > div{
+	margin: 50px 0 0 0;
+	/* width: 85%;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	align-items: flex-start; */
+	display:grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap:1em;
+}
+
+section:nth-of-type(2) div label{
+	font-size: 1rem;
+	margin-right: 5px;
+}
+
+/****
+/* FILTEREN OP BASIS VAN TYPES*/
+section:nth-of-type(2) div select{
+	border: none;
+	font-size: 0.9rem;
+	border-radius: 10px;
+	padding: 3px 10px 3px 10px;
+	border: 1px solid rgb(96, 96, 96);
+	cursor: pointer;
+}
+
+
+/****
+/* SEARCH BAR*/
+section:nth-of-type(2) div input{
+	font-size: 0.9rem;
+
+	padding: 3px 5px 3px 10px;
+	border: 1px solid rgb(96, 96, 96);
+	border-radius: 10px;
 }
 
 /* elke pokemon type heeft iegen kleur*/
@@ -378,196 +573,28 @@ section ul[data-filter="fairy"] li:not(.fairy){
 	display: none;
 }
 
-/* STYLING VAN DELETE BUTTON VOOR LI IN 'MY TEAM'*/
-section ul.facet  li button{
-background-color: white;
-border: none;
-border-radius:50%;
-position: absolute;
-padding:0 0.5em;
-right: 0;
-width: 40px;
-height: 40px;
-margin:0;
-opacity: 0;
-}
-
-section ul.facet  li:hover button{
-opacity: 1;
-}
-
-section ul.facet  li:hover button:hover{
-	background-color: red;
-	text-shadow: 2px 2px 3px rgb(235, 216, 216)
-}
 
 
-
-
-section ul li h3 {
-	font-size:1.5rem;
-	text-align: center;
-
-	margin:0;
-}
-
-section ul li img{
-	height:8em;
-}
-
-
-
-
-/******************
-/* EERSTE SECTION*/
-section:nth-of-type(1){
-	padding: 3rem 0 0 0;
-}
-
-@keyframes notification {
-	0%,60% {
-	  opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
-  }
-
-/* NOTICE MESSAGE*/
-section:nth-of-type(1) >p{
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-	font-size: 1.2em;
-	color: var(--section-li-color);
-	position: relative;
-	animation: notification 3s forwards;
-	display: none;
-}
-section:nth-of-type(1) >p::after{
-	content: 'remove a pokemon from your team';
-	position: absolute;
-	font-size: .6em;
-	bottom: -1.5em;
-	left: 0;
-}
-
-
-
-section:nth-of-type(1) div{
-	width: 100%;
-}
-
-section:nth-of-type(1) ul:empty::after {
-	content:"Start by clicking or dragging your favorite pokemons in here!!";
-	text-align:center;
-	font-size:1.3em;
-
-	background-color: var(--empty-bg);
-	border-radius: 20px;
-	padding: 20px;
-
-	animation: pulse-animation 2s infinite;
-}
-
-section:nth-of-type(1) ul:empty::after:hover{
-	opacity: 0.5;
-}
-
-/********
-/* RANDOMIZE TEAM BUTTON*/
-section:nth-of-type(1) #randomizer{
-	font-size: 1.1rem;
-	font-weight: 700;
-	color: var(--button-color);
-
-	background-color: var(--section-bg);
-	border: 2px solid var(--button-color);
-	border-radius: 10px;
-	padding: 19px;
-	margin: 2rem 0 2em 0;
-	transition: 0.4s;
-}
-
-section:nth-of-type(1)  #randomizer:hover {
-	box-shadow: inset 0 0 0 3em var(--button-color);
-	color: var(--section-bg);
-}
-
-
-/* section:nth-of-type(1) #remove{
-
-} */
-
-
-
-
-/******************
-/* TWEEDE SECTION*/
-section:nth-of-type(2) ul:empty::after {
-	margin-top: 3em;
-	content:"No pokemon found";
-	text-align:center;
-	font-size:1.3em;
-}
-
-/********
-/* FILTERS*/
-section:nth-of-type(2) > div{
-	margin: 50px 0 0 0;
-	/* width: 85%;
-	display: flex;
-	flex-direction: column;
-	gap: 2em;
-	align-items: flex-start; */
-	display:grid;
-	grid-template-columns: repeat(1, 1fr);
-	gap:1em;
-}
-
-section:nth-of-type(2) div label{
-	font-size: 1rem;
-	margin-right: 5px;
-}
-
-/****
-/* FILTEREN*/
-section:nth-of-type(2) div select{
-	border: none;
-	font-size: 0.9rem;
-	border-radius: 10px;
-	padding: 3px 10px 3px 10px;
-	border: 1px solid rgb(96, 96, 96);
-	cursor: pointer;
-}
-
-
-/****
-/* SEARCH BAR*/
-section:nth-of-type(2) div input{
-	font-size: 0.9rem;
-
-	padding: 3px 5px 3px 10px;
-	border: 1px solid rgb(96, 96, 96);
-	border-radius: 10px;
-}
-
-
-
-
+/***********************************************************************************
 
 
 
 /***************************/
 /******* MEDIA QUERY *******/
 /***************************/
-/* ZODAT FILTERS NAAST ELKAAR KOMEN TE STAAN VANAF 530px*/
+/* ZODAT DE FILTERS NAAST ELKAAR KOMEN TE STAAN VANAF 530px*/
 @media screen and (min-width: 32em)  {
 
 	section:nth-of-type(2) > div { 
 		grid-template-columns: repeat(2, 1fr); 
 	}
   }
+
+
+
+
+
+
 
 
 /* ZODAT MY TEAM EN POKEDEX ONDER ELKAAR KOMEN TE STAAN VANAF 1024PX*/
