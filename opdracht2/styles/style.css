@@ -128,7 +128,7 @@ button, summary {
 
   /* voor wanneer 'MY TEAM' VOL zit message*/
 @keyframes notification {
-	0%,70% {
+	0%,75% {
 	  opacity: 1;
 	}
 	100% {
@@ -589,10 +589,6 @@ section ul[data-filter="fairy"] li:not(.fairy){
 		grid-template-columns: repeat(2, 1fr); 
 	}
   }
-
-
-
-
 
 
 

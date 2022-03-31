@@ -1,7 +1,5 @@
 // JavaScript Document
-console.log("howdy");
-
-
+console.log("welcome ;)");
 
 ////////////////////////////////////////////////////
 //VOOR DE SEARCH BAR
@@ -11,103 +9,84 @@ console.log("howdy");
 const searchBar = document.getElementById('searchBar');
 //Een reference naar alle pokemons 
 let allPokemon = [];
-console.log(allPokemon);
+
+//functie   
+//bron code ---> https://www.youtube.com/watch?v=wxz5vJ1BWrc&t=584s
 
 
-//keyup functie, wanneer user in searchbar typt
-searchBar.addEventListener('keyup', (e) => {
-    const searchString = e.target.value.toLowerCase();
-    
-    // Pokemons filteren met de user input
-    const filteredPokemons = allPokemon.filter(aPokemon => {
-    return aPokemon.name.toLowerCase().includes(searchString);
-    });
-
-	// Lijst legen
-  pokedexList.innerHTML = '';
-
-	// Loopen over de gefilterde pokemons 
-    filteredPokemons.forEach(pokemon => {
-
-		// List item per pokemon maken 
-      	let html = `
-        	<li draggable="true" class="${pokemon.types[0].type.name}" ondblclick="remove(this)"> 
-         		 <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-              <h3> ${pokemon.id}. ${pokemon.name}</h3>
-              <button id="deleteP">X</button>		
-			</li>
-      	`;
-
-		// List item toevoegen aan de list
-    pokedexList.insertAdjacentHTML("beforeend", html);
-    });
-});
-
-
-
-
+// WAAR IK ZELF AAN ZAT TE KLOOEIEN
 ////////////////////////////////////////////////////
-//VOOR HET FILTEREN OP TYPE
-////////////////////////////////////////////////////
-//Selecteren van de select
-var filter = document.querySelector('select');
+// searchBar.addEventListener('keyup', searchResults);
+// function searchResults(e) {
+//   //wat je in de searchbar intypt in een const plaatsen
+//   const searchString = e.target.value.toLowerCase();
+//   // console.log(e.target.value);
 
-//functie voor het selecteren
-function filteren(e){
-console.log(e.target.value);
+//   //vanuit alle pokemons (allPokemon) filteren van wat er in de searchbar staat
+//   const filteredPokemons = allPokemon.filter(aPokemon => {
+//         return aPokemon.name.toLowerCase().includes(searchString);
+//     });
 
-pokedexList.dataset.filter = e.target.value;
-}
+//     console.log(filteredPokemons);
 
-//EVENT voor het filteren van de types met de select
-filter.addEventListener('change', filteren);
-
+// }
 
 
 
 ////////////////////////////////////////////////////
 //POKEMON API DOCUMENTATIE https://pokeapi.co
 ////////////////////////////////////////////////////
+
 //API URL https://pokeapi.co/api/v2/pokemon?limit=200&offset=0
-const URL = "https://pokeapi.co/api/v2/pokemon?limit=700&offset=0";
+
+const URL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
 //haalt lijst uit 2e section in HTML
 const pokedexList = document.querySelector("section:nth-of-type(2) ul");
 
-//functie
-async function getPokemon() {
+//functie voor informatie halen uit de API en dit in de html vastleggen + li oproepen uit pokedex & event voor add/delete functie + list.js library
+function getPokemon() {
+  //vragen van de data uit de API
+   getData(URL).then((data) => {
+     console.log(data.results);
+ 
+   
+     //array uit de data opslaan in een var
+     allPokemon = data.results;
+     //loop over elke pokemon in de lijst
+     allPokemon.forEach((aPokemon) => {
+       getData(aPokemon.url).then((data) => {
+         //De statische html voor een pokemon
+         var pokemonHTML = 
+               `<li draggable="true" class="${data.types[0].type.name}"> 
+                 <img src="${data.sprites.front_default}" alt="${data.name}">
+                 <h3 class="name"> ${data.id}. ${data.name}</h3>
+                 <button id="deleteP">X</button>										
+               </li>`;
+         //Voegen van de HTML in een lijst
+         pokedexList.insertAdjacentHTML("beforeend", pokemonHTML);
+         // console.log(data);
 
-  // Pokemon data ophalen uit de API
-  const pokemons = await getData(URL);
 
-  // loopen over elke pokemon in de lijst en in een collection opslaan met de goede data
-  const pokemonCollection = pokemons.results.map(async pokemonObject => {
-    const pokemon = await getData(pokemonObject.url);
-    return pokemon;
-  });
+        //ADD/DELETE POKEMON TO TEAM WITH CLICK
+        //functie staat op regel 112
+        //roept uit de 'POKEDEX' de li's
+        var lastPokemon = pokedexList.querySelector('li:last-of-type');
+        lastPokemon.addEventListener('click', addToTeam);
+ 
 
-  //loop over elke pokemon in de collection
-  pokemonCollection.forEach(pokemon => {
-
-    pokemon.then((pokemon) => {
-      
-      // De pokemon toeveogen aan de allPokemon list
-      allPokemon.push(pokemon);
-
-      // Voor elke pokemon een list item maken
-      let html = `
-        <li draggable="true" class="${pokemon.types[0].type.name}" ondblclick="remove(this)"> 
-          <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-          <h3> ${pokemon.id}. ${pokemon.name}</h3>
-          <button id="deleteP">X</button>		
-        </li>
-      `;       
-      // console.log(pokemon.types[0].type.name);
-      // De html van de pokemon toevoegen aan de ul
-      pokedexList.insertAdjacentHTML("beforeend", html);
-    })
-  });
-}
-
+         ////////////////////////////////////////////////////
+         //VOOR DE SEARCH BAR
+         ////////////////////////////////////////////////////
+         // MET DE LIBRARY LIST.JS
+         var options = {
+           valueNames: [ 'name' ]
+         };
+       
+         var pokemonList = new List('pokedex', options);
+       });
+     });
+   });
+ };
 
 /****************/
 /* FETCH DATA   */
@@ -123,16 +102,56 @@ async function getData(URL) {
 window.addEventListener('DOMContentLoaded', getPokemon);
 
 
+////////////////////////////////////////////////////
+//ADD/DELETE POKEMON TO TEAM WITH CLICK FUNCTION
+////////////////////////////////////////////////////
+function addToTeam(e){
+  //Roept de gehele 'li' van de pokemon aan als je op de 'li' klikt
+  var thePokemon = this;
+  //roept de dichtbijzijnde 'ul' list van de aangeklikte pokemon(thePokemon)
+  var theList = thePokemon.closest('ul');
 
+  //if statement in een if statment
+  // als theList de id dexList heeft dan kan je de pokemons van POKEDEX naar MY TEAM toevoegen
+  if(theList.id == 'dexList'){
+    //roept alle pokemons aan die in de 'MY TEAM' zitten
+    var currentTeamMembers = teamList.querySelectorAll('li');
 
+    //als 'MY TEAM' minder dan 6 pokemons bevat kan je een pokemon toevoegen, anders niet
+    if(currentTeamMembers.length<6){
+    teamList.appendChild(thePokemon);
 
+    // 'team is full' niet van toepassing
+    messageNotice.style.display = 'none'; 
+    // console.log(thePokemon);
+    }else{
+      // 'team is full' messge weergeven
+      messageNotice.style.display = 'block'; 
+    }
 
+  } else{
+    //zet pokemon van 'MY TEAM' achterin terug in de 'POKEDEX'
+    dexList.appendChild(thePokemon);
+  }
+
+}
 
 ////////////////////////////////////////////////////
-//RANDOMIZE TEAM
+ //VOOR HET FILTEREN OP TYPE
 ////////////////////////////////////////////////////
 
+//Selecteren van de select
+var filter = document.querySelector('select');
 
+//functie voor het selecteren
+function filteren(e){
+console.log(e.target.value);
+
+pokedexList.dataset.filter = e.target.value;
+}
+
+//EVENT voor het filteren van de types met de select
+filter.addEventListener('change', filteren);
 
 
 
@@ -227,33 +246,18 @@ Sortable.create(teamList, {
       return e.el.children.length <=5;
     }
   },
-  animation: 100,
+  animation: 0,
   sort: true,
 });
 
 Sortable.create(pokedexList, {
   group: {
     name: 'dexList',
-    put: 'teamList',
-    pull: 'clone'
+    put: 'teamList'
   },
-  animation: 100,
-  sort: false
+  animation: 0,
+  sort: false,
 });
-
-
-////////////////////////////////////////////////////
-//ADD/DELET POKEMON TO TEAM WITH CLICK FUNCTION
-////////////////////////////////////////////////////
-// link bron : https://www.codegrepper.com/code-examples/javascript/how+to+delete+an+item+on+click+in+js
-var deleteP = document.getElementById('deleteP');
-let togList = document.querySelector("section:nth-of-type(1) ul li")
-
-//verwijderen van een pokemon uit 'MY TEAM' met double click
-function remove(e){
-  e.parentNode.removeChild(e);
-}
-
 
 
 
