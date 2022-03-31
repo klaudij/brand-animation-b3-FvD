@@ -126,6 +126,28 @@ button, summary {
 	}
 }
 
+/* voor wanneer 'MY TEAM' LEEG is swipe hint*/
+@keyframes swipe{
+	0%{
+	  transform: translateX(0px)  
+	}
+  20%{
+	transform: translateX(0px)}
+  100%{
+	transform: translateX(-100px)}
+}
+@keyframes circles{
+	0%{
+	   opacity: 0 
+	}
+  33%{
+	opacity: 1}
+  90%{
+	opacity: 0}
+100%{
+	opacity: 0}
+}
+
   /* voor wanneer 'MY TEAM' VOL zit message*/
 @keyframes notification {
 	0%,75% {
@@ -296,9 +318,6 @@ section ul {
 	gap:1em;
 }
 
-section ul .draggable.dragging{
-	opacity: 0;
-}
 
 /********
 /* ul li*/
@@ -371,7 +390,13 @@ section:nth-of-type(1) div{
 }
 
 /* WANNEER 'MY TEAM' LEEG IS KRIJG JE DIT TE ZIEN*/
-section:nth-of-type(1) ul:empty::after {
+section:nth-of-type(1) ul:empty{
+	/* background-color: pink; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+section:nth-of-type(1) ul:empty::before {
 	content:"Start by clicking or dragging your favorite pokemons in here!!";
 	text-align:center;
 	font-size:1.3em;
@@ -379,9 +404,22 @@ section:nth-of-type(1) ul:empty::after {
 	background-color: var(--empty-bg);
 	border-radius: 20px;
 	padding: 20px;
+	width: 200px;
+	height: 160px;
+	margin-bottom: 1em;
 
 	animation: pulse-animation 2s infinite;
 }
+
+section:nth-of-type(1) ul:empty::after{
+	content: "👈 Swipe ";
+	width: 5rem;
+	font-size: 1.5rem;
+	text-align:center;
+	animation: circles 1.25s ease-out infinite, swipe 1.25s ease-out infinite
+}
+
+
 
 section:nth-of-type(1) ul:empty:hover{
 	opacity: 0.6;
@@ -595,9 +633,6 @@ section ul[data-filter="fairy"] li:not(.fairy){
 
 /* ZODAT MY TEAM EN POKEDEX ONDER ELKAAR KOMEN TE STAAN VANAF 1024PX*/
 @media screen and (min-width: 64em)  {
-	/* body{
-		background-color: pink;
-	} */
 
 	main {
 		margin-top: 0;
@@ -639,5 +674,9 @@ section ul[data-filter="fairy"] li:not(.fairy){
 
 	section:nth-of-type(1){
 		padding: 1rem 0 40px 0;
+	}
+
+	section:nth-of-type(1) ul:empty::after{
+		display: none;
 	}
 }
