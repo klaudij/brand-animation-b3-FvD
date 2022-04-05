@@ -135,6 +135,9 @@ Wat ik geleerd heb is dat je gebruik kan maken van js libraries. Een voorbeeld v
 Wat ik ook geleerd heb is hoe je vanuit de data wat je uit de API heb opgehaald, dit in een statische html elementen gooien en dit weer laden in de HTML. <br>
   <br>
   
+   <img src="readme-images/tabfunctie.png" width="400px" alt="uitkomst opdracht 2"> <br>
+De keyborad functie is voor mij zeker een refresher geweest. Dit hebben wij vorig jaar tijdens het vak 'Inleiding programeren' gehad maar omdat zo lang geleden was ben ik het alweer vergeten hoe het moest. Maar de 'break:' is wel iets wat nieuw was voor mij. Dit zorgt er namelijk voor dat de andere toetsen onnidig gechekt worden. <br>
+  <br>
   
   
   <br>
