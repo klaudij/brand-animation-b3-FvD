@@ -2,56 +2,24 @@
 console.log("welcome ;)");
 
 ////////////////////////////////////////////////////
-//VOOR DE SEARCH BAR
-////////////////////////////////////////////////////
-
-//haalt search bar uit 2e section in HTML
-const searchBar = document.getElementById('searchBar');
-//Een reference naar alle pokemons 
-let allPokemon = [];
-
-//functie   
-//bron code ---> https://www.youtube.com/watch?v=wxz5vJ1BWrc&t=584s
-
-
-// WAAR IK ZELF AAN ZAT TE KLOOEIEN
-////////////////////////////////////////////////////
-// searchBar.addEventListener('keyup', searchResults);
-// function searchResults(e) {
-//   //wat je in de searchbar intypt in een const plaatsen
-//   const searchString = e.target.value.toLowerCase();
-//   // console.log(e.target.value);
-
-//   //vanuit alle pokemons (allPokemon) filteren van wat er in de searchbar staat
-//   const filteredPokemons = allPokemon.filter(aPokemon => {
-//         return aPokemon.name.toLowerCase().includes(searchString);
-//     });
-
-//     console.log(filteredPokemons);
-
-// }
-
-
-
-////////////////////////////////////////////////////
 //POKEMON API DOCUMENTATIE https://pokeapi.co
 ////////////////////////////////////////////////////
 
 //API URL https://pokeapi.co/api/v2/pokemon?limit=200&offset=0
-
 const URL = "https://pokeapi.co/api/v2/pokemon?limit=100&offset=0";
-//haalt lijst uit 2e section in HTML
+
+//selecteert lijst uit 2e section in HTML
 const pokedexList = document.querySelector("section:nth-of-type(2) ul");
 
-//functie voor informatie halen uit de API en dit in de html vastleggen + li oproepen uit pokedex & event voor add/delete functie + list.js library
+
+//functie voor informatie halen uit de API en dit in de html vastleggen + li oproepen uit pokedex ul & event voor add/delete functie + list.js library
 function getPokemon() {
   //vragen van de data uit de API
    getData(URL).then((data) => {
      console.log(data.results);
  
-   
      //array uit de data opslaan in een var
-     allPokemon = data.results;
+     var allPokemon = data.results;
      //loop over elke pokemon in de lijst
      allPokemon.forEach((aPokemon) => {
        getData(aPokemon.url).then((data) => {
@@ -62,15 +30,16 @@ function getPokemon() {
                  <h3 class="name"> ${data.id}. ${data.name}</h3>
                  <button id="deleteP">X</button>										
                </li>`;
-         //Voegen van de HTML in een lijst
+         //Voegen van de li achteraan de ul in de HTML
          pokedexList.insertAdjacentHTML("beforeend", pokemonHTML);
          // console.log(data);
 
 
         //ADD/DELETE POKEMON TO TEAM WITH CLICK
-        //functie staat op regel 112
-        //roept uit de 'POKEDEX' de li's
+        //functie staat op regel 87
+        //roept uit de 'POKEDEX' de li's op
         var lastPokemon = pokedexList.querySelector('li:last-of-type');
+        //event functie
         lastPokemon.addEventListener('click', addToTeam);
  
 
@@ -92,21 +61,32 @@ function getPokemon() {
 /* FETCH DATA   */
 /* RETURNS JSON */
 /****************/
+
 async function getData(URL) {
-  return fetch(URL)
-    .then((response) => response.json())
-    .then((jsonData) => jsonData);
+  // 8. de 'getData' functie geeft de 'jsonData' weer terug aan de 'getPokemon' functie
+	return (fetch(URL) //1. een verzoek aan de API om data op te halen
+		.then ( //2. gaat verder als API antwoord geeft
+      //3. je krijgt 'response'-object met data terug(kan nog niet mee aan de slag)
+      response  => response.json() // 4.'response'-object zet je om naar JSON (met jSON kan je hier in js aan de slag)
+       )
+
+		.then ( //5. als de response is omgezet naar JSON kun je verder
+      //6. de naam van de naar JSON omgezette info is 'jsonData'(naam ag zelf verzinnen)
+      jsonData  => {return jsonData} // 7. de JSON ('jsonData') geef je terug aan de 'getData' functie
+      )
+	);
 }
 
-// start de functie
+// start de functie --> hiermee worden de funtie 'getPokemon' in de html geladen
 window.addEventListener('DOMContentLoaded', getPokemon);
 
 
 ////////////////////////////////////////////////////
 //ADD/DELETE POKEMON TO TEAM WITH CLICK FUNCTION
 ////////////////////////////////////////////////////
+
 function addToTeam(e){
-  //Roept de gehele 'li' van de pokemon aan als je op de 'li' klikt
+  //Roept de gehele 'li' (img en h2 erin) van de pokemon aan als je op de 'li' klikt
   var thePokemon = this;
   //roept de dichtbijzijnde 'ul' list van de aangeklikte pokemon(thePokemon)
   var theList = thePokemon.closest('ul');
@@ -131,6 +111,7 @@ function addToTeam(e){
 
   } else{
     //zet pokemon van 'MY TEAM' achterin terug in de 'POKEDEX'
+    //appendchild--> is used to insert a new node or reposition an existing node as the last child of a particular parent node
     dexList.appendChild(thePokemon);
   }
 
@@ -158,9 +139,13 @@ filter.addEventListener('change', filteren);
 ////////////////////////////////////////////////////
 //SWITCHEN VAN TABS TUSSEN TEAM EN POKEDEX
 ////////////////////////////////////////////////////
+// selecteren van de Team section
 var myTeamSection = document.querySelector('#team');
+// selecteren van de Team heading
 var myTeamHeading = document.querySelector('section#team h2');
+// selecteren van de pokedex section
 var pokedexSection = document.querySelector('#pokedex');
+// selecteren van de pokedex heading
 var pokedexHeading = document.querySelector('section#pokedex h2');
 
 
@@ -179,12 +164,18 @@ pokedexHeading.addEventListener("click", toThePokedex);
 ///////////////////
 // klik op rechter/linker pijlte op de toetsenbord
 document.addEventListener("keydown", (e) => {
-	switch(e.code) {
+  // bepalen van welke toets is ingedrukt
+	switch(e.key) {
+    // als right arrow is dan dit allemaal doen. 
 		case "ArrowRight":
-			toThePokedex();
-			break;
+			toThePokedex(); // ---> functie toThePokedex wordt opgeroepen
+      // console.log('right')
+			break;// break zorgt ervoor dat toetsen niet onnodig gecheckt worden.
+
+     // als left arrow is dan dit allemaal doen. 
 		case "ArrowLeft":
-			toMyTeam();
+      // console.log('left')
+			toMyTeam();// ---> functie toMyTeam wordt opgeroepen
 			break;
 	}
 });
@@ -226,7 +217,7 @@ function toMyTeam() {
 //DRAG AND DROP SHARED LIST TUSSEN 'MY TEAM' EN 'POKEDEX'
 ////////////////////////////////////////////////////
 //library: https://sortablejs.github.io/Sortable/
-
+// selecteren van de ul's
 var teamList = document.getElementById('teamList');
 var dexList = document.getElementById('dexList');
 
@@ -240,7 +231,7 @@ Sortable.create(teamList, {
       // wanneer je meer dan 6 pokemons in 'YOU TEAM' wilt plaatsen krijg je een message
       if(e.el.children.length >=6){
         messageNotice.style.display = 'block';      
-      }else if(e.el.children.length <= 6){
+      }else{
         messageNotice.style.display = 'none'
       }
       return e.el.children.length <=5;
@@ -258,6 +249,7 @@ Sortable.create(pokedexList, {
   animation: 0,
   sort: false,
 });
+
 
 
 

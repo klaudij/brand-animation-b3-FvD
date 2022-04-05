@@ -9,7 +9,6 @@
 			 url('../fonts/eenfont.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-
 }
 
 
@@ -39,7 +38,7 @@ button, summary {
 /**CUSTOM PROPERTIES**/
 /*********************/
 :root {
-	/* DARK MODE COLOR SCHEME  */
+	/* DARK MODE COLOR SCHEME  *****/
 	--color-main:#8EA5D1;
 	--color-background:#2F3D60;
 
@@ -73,41 +72,41 @@ button, summary {
 }
 
 /* VOOR DE LIGHT MODE COLOR SCHEME */
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light){
 	:root {
-	/* LGHT MODE COLOR SCHEME  */	
-	--color-main:#2B3240;
-	--color-background:#F4F5F9;
+		/* LIGHT MODE COLOR SCHEME  *****/
+		--color-main:#2B3240;
+		--color-background:#F4F5F9;
+	
+		--section-bg: #E8ECF3;
+		--section-bg-not-active:#c3c7ce;
+		--empty-bg:#a4a7ae;
+		--button-color: #008EFF; 
+		--section-li-color:rgb(60, 64, 77);
+		--pulse-color:rgba(0, 0, 0, 0.2);
+	
+		/* POKEMON TYPE COLORS  */
+		--normal: #F3F3E8;
+		--fire: #EB7D53;
+		--water: #9AC3F3;
+		--grass:#A3C776;
+		--electric: #ECDC34;
+		--ice: #5A8DB1;
+		--fighting: #B86A2B;
+		--poison: #A5447C;
+		--ground: #9A6B3A;
+		--flying:#7D9DB0;
+		--psychic: #EC8081;
+		--bug: #A1B30D;
+		--rock:  #7E6B3F;
+		--ghost:#DAC5AE;
+		--dragon:  #4173C8;
+		--steel: #858482;
+		--fairy:  #FCE0C8;
+	
 
-	--section-bg: #E8ECF3;
-	--section-bg-not-active:#c3c7ce;
-	--empty-bg:#a4a7ae;
-	--button-color: #008EFF; 
-	--section-li-color:rgb(60, 64, 77);
-	--pulse-color:rgba(0, 0, 0, 0.2);
-
-	/* POKEMON TYPE COLORS  */
-	--normal: #F3F3E8;
-	--fire: #EB7D53;
-	--water: #9AC3F3;
-	--grass:#A3C776;
-	--electric: #ECDC34;
-	--ice: #5A8DB1;
-	--fighting: #B86A2B;
-	--poison: #A5447C;
-	--ground: #9A6B3A;
-	--flying:#7D9DB0;
-	--psychic: #EC8081;
-	--bug: #A1B30D;
-	--rock:  #7E6B3F;
-	--ghost:#DAC5AE;
-	--dragon:  #4173C8;
-	--steel: #858482;
-	--fairy:  #FCE0C8;
 	}
 }
-
-
 
 /***********************************************************************************
 
@@ -165,7 +164,7 @@ button, summary {
 
 
 /*********************/
-/***** STYLING ******/
+/*******STYLING*******/
 /*********************/
 body {
 font-family: 'Chivo', sans-serif;
@@ -176,14 +175,6 @@ font-family: 'Chivo', sans-serif;
   display:grid;
   grid-template-rows:min-content 1fr;
 }
-
-
-/****************/
-/******HEADER****/
-/****************/
-/* header {
-	margin: 0 0 100px 0;
-} */
 
 
 /****************/
@@ -198,7 +189,7 @@ main {
 h1 {
 	font-family: 'Archivo Black', sans-serif;
 	text-align: center;
-	font-size: 2.3rem;
+	font-size: clamp(2rem, 1rem + 10vw, 4rem);
 
 	margin: 35px 0 5px 0;
 }
@@ -237,20 +228,6 @@ section {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-}
-
-
-/* voor het swipen 'animatie' */
-section #team.linksSwipe {
-	transform: translatex(calc(-50vh - 40vmin))
-	scale(.85) 
-	rotate(-15deg);
-}
-
-section #pokedex.rechtsSwipe{
-	transform: translatex(calc(50vh + 40vmin))
-	scale(.85) 
-	rotate(15deg);
 }
 
 section.tabActive{
@@ -397,7 +374,7 @@ section:nth-of-type(1) ul:empty{
 	align-items: center;
 }
 section:nth-of-type(1) ul:empty::before {
-	content:"Start by clicking or dragging your favorite pokemons in here!!";
+	content:"Start by clicking your favorite pokemons so they show up in here!!";
 	text-align:center;
 	font-size:1.3em;
 
@@ -405,8 +382,8 @@ section:nth-of-type(1) ul:empty::before {
 	border-radius: 20px;
 	padding: 20px;
 	width: 200px;
-	height: 160px;
 	margin-bottom: 1em;
+
 
 	animation: pulse-animation 2s infinite;
 }
@@ -497,15 +474,11 @@ section:nth-of-type(2) ul:empty::after {
 /********
 /* FILTERS*/
 section:nth-of-type(2) > div{
-	margin: 50px 0 0 0;
-	/* width: 85%;
-	display: flex;
-	flex-direction: column;
-	gap: 2em;
-	align-items: flex-start; */
 	display:grid;
 	grid-template-columns: repeat(1, 1fr);
 	gap:1em;
+
+	margin: 50px 0 0 0;
 }
 
 section:nth-of-type(2) div label{
@@ -522,6 +495,28 @@ section:nth-of-type(2) div select{
 	padding: 3px 10px 3px 10px;
 	border: 1px solid rgb(96, 96, 96);
 	cursor: pointer;
+}
+
+/* VOOR HET FILTEREN VAN DE POKEMONS*/
+section ul[data-filter="normal"] li:not(.normal),
+section ul[data-filter="fire"] li:not(.fire),
+section ul[data-filter="water"] li:not(.water),
+section ul[data-filter="grass"] li:not(.grass),
+section ul[data-filter="electric"] li:not(.electric),
+section ul[data-filter="ice"] li:not(.ice),
+section ul[data-filter="fighting"] li:not(.fighting),
+section ul[data-filter="poison"] li:not(.poison),
+section ul[data-filter="ground"] li:not(.ground),
+section ul[data-filter="flying"] li:not(.flying),
+section ul[data-filter="psychic"] li:not(.psychic),
+section ul[data-filter="bug"] li:not(.bug),
+section ul[data-filter="rock"] li:not(.rock),
+section ul[data-filter="ghost"] li:not(.ghost),
+section ul[data-filter="dark"] li:not(.dark),
+section ul[data-filter="dragon"] li:not(.dragon),
+section ul[data-filter="steel"] li:not(.steel),
+section ul[data-filter="fairy"] li:not(.fairy){
+	display: none;
 }
 
 
@@ -589,28 +584,6 @@ section ul li.fairy{
 }
 
 
-/* VOOR HET FILTEREN VAN DE POKEMONS*/
-section ul[data-filter="normal"] li:not(.normal),
-section ul[data-filter="fire"] li:not(.fire),
-section ul[data-filter="water"] li:not(.water),
-section ul[data-filter="grass"] li:not(.grass),
-section ul[data-filter="electric"] li:not(.electric),
-section ul[data-filter="ice"] li:not(.ice),
-section ul[data-filter="fighting"] li:not(.fighting),
-section ul[data-filter="poison"] li:not(.poison),
-section ul[data-filter="ground"] li:not(.ground),
-section ul[data-filter="flying"] li:not(.flying),
-section ul[data-filter="psychic"] li:not(.psychic),
-section ul[data-filter="bug"] li:not(.bug),
-section ul[data-filter="rock"] li:not(.rock),
-section ul[data-filter="ghost"] li:not(.ghost),
-section ul[data-filter="dark"] li:not(.dark),
-section ul[data-filter="dragon"] li:not(.dragon),
-section ul[data-filter="steel"] li:not(.steel),
-section ul[data-filter="fairy"] li:not(.fairy){
-	display: none;
-}
-
 
 
 /***********************************************************************************
@@ -620,15 +593,13 @@ section ul[data-filter="fairy"] li:not(.fairy){
 /***************************/
 /******* MEDIA QUERY *******/
 /***************************/
-/* ZODAT DE FILTERS NAAST ELKAAR KOMEN TE STAAN VANAF 530px*/
+/* ZODAT DE FILTERS IN DE POKEDEX NAAST ELKAAR KOMEN TE STAAN VANAF 530px*/
 @media screen and (min-width: 32em)  {
 
 	section:nth-of-type(2) > div { 
 		grid-template-columns: repeat(2, 1fr); 
 	}
   }
-
-
 
 
 /* ZODAT MY TEAM EN POKEDEX ONDER ELKAAR KOMEN TE STAAN VANAF 1024PX*/
@@ -641,6 +612,7 @@ section ul[data-filter="fairy"] li:not(.fairy){
 		flex-direction: column;
 	}
 
+	/* om de tabs weg te halen*/
 	section:not(.tabActive) {
 	
 		background-color:var(--section-bg);
@@ -649,7 +621,7 @@ section ul[data-filter="fairy"] li:not(.fairy){
 	section h2 {
 		position:static;
 		margin:1em 0 0.5em 0;
-		font-size:1.2em;
+		font-size:1.2rem;
 	}
 	
 	section:first-of-type h2 {
@@ -662,7 +634,7 @@ section ul[data-filter="fairy"] li:not(.fairy){
 
 
 	section:not(.tabActive) h2 {
-		font-size: 1.2em;
+		font-size: 1.2rem;
 
 	}
 	
@@ -672,10 +644,20 @@ section ul[data-filter="fairy"] li:not(.fairy){
 	}
 
 
+
+
+	/* padding verandeeren voor 1e section*/
 	section:nth-of-type(1){
 		padding: 1rem 0 40px 0;
 	}
 
+
+    /* tekst aanpassen voor wanneer 'MY TEAM' leeg is*/
+	section:nth-of-type(1) ul:empty::before {
+		content:"Start by clicking or dragging your favorite pokemons in here!!";
+	}
+
+	/* Swipe hint weghalen - is niet meer nodig*/
 	section:nth-of-type(1) ul:empty::after{
 		display: none;
 	}
