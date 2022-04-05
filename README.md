@@ -156,7 +156,5 @@ Wat ik vond wat ook is goed gegaan is nadat de 'filter op type' functie werkte, 
  <img src="readme-images/pokeAPI.png" width="200px" alt="uitkomst opdracht 2"><br>
   Wat ik in het begin nog een beetje lastig vond was de API. Ik heb er nog nooit meegewerkt, en heb er zeker geen spijt van dat ik ervoor heb gekozen om dit in mijn opdracht te verwerken. Want zo heb ik toch wel iets nieuwe geleerd. Wat ik er nou zo lastig aan vond is dat wanneer ik b.v. een zoekfunctie of een filter functie wou verwerken wist ik niet zo goed hoe ik dit moest aanpakken.<br>
     <br>
-  
- <img src="readme-images/pokeAPI.png" width="200px" alt="uitkomst opdracht 2"><br>
-  Wat ik in het begin nog een beetje lastig vond was de API. Ik heb er nog nooit meegewerkt, en heb er eker geen spijt van dat ik ervoor heb gekozen om dit in mijn opdracht te verwerken. Want zo heb ik toch wel iets nieuwe geleerd. Wat ik er nou zo lastig aan vond is dat wanneer ik b.v. een zoekfunctie of een filter functie wou verwerken wist ik niet zo goed hoe ik dit moest aanpakken.<br>
+
 </details>
