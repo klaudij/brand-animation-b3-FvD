@@ -139,6 +139,10 @@ Wat ik ook geleerd heb is hoe je vanuit de data wat je uit de API heb opgehaald,
 De keyborad functie is voor mij zeker een refresher geweest. Dit hebben wij vorig jaar tijdens het vak 'Inleiding programeren' gehad maar omdat zo lang geleden was ben ik het alweer vergeten hoe het moest. Maar de 'break:' is wel iets wat nieuw was voor mij. Dit zorgt er namelijk voor dat de andere toetsen onnidig gechekt worden. <br>
   <br>
   
+  <img src="readme-images/filtercolors.png" width="400px" alt="uitkomst opdracht 2"> <br>
+Wat ik vond wat ook is goed gegaan is nadat de 'filter op type' functie werkte, heb ik ervoor gezorgd dat elk type zijn eigen background color heeft. Eerst waren ze allemaal 1 kleur en dit kan misschien toch wat onduidelijkheden opwekken, met kleur is het wat duidelijker.<br>
+  <br>
+  
   
   <br>
 
