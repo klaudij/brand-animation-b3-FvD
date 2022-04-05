@@ -19,7 +19,7 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 ## Opdracht 1 plan
 
-<details open>
+<details >
   <summary>uitwerken na schetsen idee (voor week 2)</summary>
 
 
