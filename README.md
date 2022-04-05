@@ -102,41 +102,11 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   - Hoe API werkt
   - API gebruiken in mijn eigen opdracht
   - Maken van een filter
-  - Serach bar gebruiken (en dat het daadwerkelik werkt)
+  - Search bar gebruiken (en dat het daadwerkelik werkt)
   - Javascript skills verbeteren
   - microinteracties verwerken
 </details>
 
-
-
-## Opdracht 2 test
-
-<details>
-  <summary>uitwerken na testen (week 6/7)</summary>
-
-  Neem minimaal 5 bevindingen op:
-
-
-
-  ### Bevinding 1:
-  Omschrijving van wat er nog niet orde was (tekst en afbeeding(en)).
-
-  #### oplossing:
-  Beschrijving hoe je het hebt hebt opgelost of als het niet gelukt is hoe je het zou oplossen (tekst en afbeeding(en)).
-
-
-
-  ### Bevinding 2:
-  Omschrijving van wat er nog niet orde was (tekst en afbeeding(en)).
-
-  #### oplossing:
-  Beschrijving hoe je het hebt hebt opgelost of als het niet gelukt is hoe je het zou oplossen (tekst en afbeeding(en)).
-
-
-
-  ### Bevinding 3:
-  ...
-</details>
 
 
 
