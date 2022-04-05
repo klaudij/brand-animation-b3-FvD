@@ -94,8 +94,8 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
 
 
   ### Je ontwerp:
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="ontwerp opdracht 2">
-
+  <img src="readme-images/wire.jpg" width="600px" alt="ontwerp opdracht 2"><br>
+  Wat ik wil gaan maken is een pokemon team planner, waarbij je uit de pokedex list tot max 6 pokemons kan toevoegen aan je team.
 
   ### Je ambitie: 
   Aan deze technieken/punten wil ik werken:
@@ -116,7 +116,7 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   <summary>uitwerken bij afronden opdracht (voor week 8)</summary>
 
   ### Je uitkomst - karakteristiek screenshot(s):
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="uitkomst opdracht 2">
+  <img src="readme-images/wire.jpg" width="375px" alt="uitkomst opdracht 2">
 
 
   ### Dit ging goed/Heb ik geleerd: 
