@@ -129,7 +129,7 @@ Wat ik geleerd is dat wanneer een ul leeg is dat je zelfs dit ook nog kan stijle
   <br>
   
   <img src="readme-images/search.png" width="350px" alt="uitkomst opdracht 2"><br>
-Wat ik geleerd heb is dat gebruik kan maken van js libraries. Een voorbeeld van wat ik gebruikt heb is de list.js hiermee kan je de searchbar werkend maken. Ik vond het wel een beetje lastig om dit in mijn opdracht te verwerken want in de voorbeeld opdracht stond de library buiten een funtie en ik (na wat puzzelen eindelijk gevonden) moest de library in 'getPokemon' functie plaatsen. <br>
+Wat ik geleerd heb is dat je gebruik kan maken van js libraries. Een voorbeeld van wat ik gebruikt heb is de list.js hiermee kan je de searchbar werkend maken. Ik vond het wel een beetje lastig om dit in mijn opdracht te verwerken want in de voorbeeld opdracht stond de library buiten een funtie en ik (na wat puzzelen eindelijk gevonden) moest de library in 'getPokemon' functie plaatsen om het te laten werken. <br>
   <br>
 
   ### Dit was lastig/Is niet gelukt:
