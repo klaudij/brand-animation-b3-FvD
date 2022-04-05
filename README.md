@@ -124,7 +124,9 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   ### Dit ging goed/Heb ik geleerd: 
   Korte omschrijving met plaatje(s)
 
- <img src="readme-images/randomizeB.png" width="200px" alt="uitkomst opdracht 2">
+  <img src="readme-images/listempty.png" width="200px" alt="uitkomst opdracht 2"><img src="readme-images/listnotempty.png" width="200px" alt="uitkomst opdracht 2"><br>
+Wat ik geleerd is dat wanneer een ul leeg is dat je zelfs dit ook nog kan stijlen en zodra er een li in de ul zit dat de :empty 'state' verdwijnt. En ik wist helemaal niet dat dit zelfs mogelijk was. Dus ik vond het best leuk en interresant om hiermee te werken. Zelf heb ik er ook nog een ::before en ::after eraan gekoppeld, ik vond het namelijk wat makkelijker om hiermee de 'empty state' te stijlen. <br>
+  <br>
 
 
   ### Dit was lastig/Is niet gelukt:
