@@ -124,11 +124,16 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   ### Dit ging goed/Heb ik geleerd: 
   Korte omschrijving met plaatje(s)
 
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="top">
+ <img src="readme-images/randomizeB.png" width="200px" alt="uitkomst opdracht 2">
 
 
   ### Dit was lastig/Is niet gelukt:
   Korte omschrijving met plaatje(s)
 
-  <img src="readme-images/dummy-plaatje.svg" width="375px" alt="bummer">
+  <img src="readme-images/randomizeB.png" width="200px" alt="uitkomst opdracht 2"><br>
+  Wat ik nog van plan was om te maken is dat je met de randomize button een random team kan genereren. De button staat er al alleen de js is niet gelukt. Ik had wel geprobeerd om het te maken en zat er mee te puzzelen, maar ben er niet op uitegekomen. Omdat dit niet de belangsrijkte functie is voor op de website heb ik besloten om die te laten. De button heb ik wel achtergelaten mocht ik verder aan willen werken. <br>
+  <br>
+  
+ <img src="readme-images/pokeAPI.png" width="200px" alt="uitkomst opdracht 2"><br>
+  Wat ik in het begin nog een beetje lastig vond was de API. Ik heb er nog nooit meegewerkt, en heb er eker geen spijt van dat ik ervoor heb gekozen om dit in mijn opdracht te verwerken. Want zo heb ik toch wel iets nieuwe geleerd. 
 </details>
