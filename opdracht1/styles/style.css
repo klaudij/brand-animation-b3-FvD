@@ -1,7 +1,6 @@
 /* CSS Document */
-
 /*********/
-/* FONTS */
+/**FONTS**/
 /*********/
 @font-face {
   font-family: "eenfont";
@@ -18,8 +17,13 @@
   font-style: normal;
 }
 
+
+/***************************************************************
+
+
+
 /**************/
-/* CSS REMEDY */
+/**CSS REMEDY**/
 /**************/
 *,
 *::after,
@@ -32,15 +36,16 @@ summary {
   cursor: pointer;
 }
 
+
+/***************************************************************
+
+
+
 /*********************/
-/* CUSTOM PROPERTIES */
+/**CUSTOM PROPERTIES**/
 /*********************/
 :root {
   /* basis */
-  /* --color-background:#eee;
-	--color-cirkel:#2ab673;
-	--color-font: #F2EAC3;
-	--color-blad:#00962B; */
   --color-background: #1b1d24;
   --color-cirkel: #5d9d0b;
   --color-font: #f2eac3;
@@ -72,20 +77,47 @@ summary {
   }
 }
 
+
+
+/***************************************************************
+
+
+
+/*********************/
+/****REDUCE MOTION****/
+/*********************/
 @media (prefers-reduced-motion: no-preference) {
   :root {
     --speed-cirkel: 90s;
   }
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+
+
+/***************************************************************
+
+
+
+/*********************/
+/******SUPPORTS*******/
+/*********************/
+/* de positionering van de letters in chrome (vanwege andere font)*/
+@supports(position: absolute){
   .chrome {
     --top-positie: 100px;
     --top-positie2: 165px;
   }
 }
 
-/**** ANIMATIES ****/
+
+
+/***************************************************************
+
+
+
+/*********************/
+/******ANIMATIES******/
+/*********************/
 /* voor het draaien van de wereldbol */
 @keyframes rond {
   0% {
@@ -178,10 +210,12 @@ summary {
 
 
 
+/***************************************************************
+
 
 
 /****************/
-/**** STYLING ***/
+/*****STYLING****/
 /****************/
 body {
   font-family: "Fink Heavy", "Podkova", serif;
@@ -217,6 +251,8 @@ h1 section:first-of-type {
   transition-duration: 0s;
 }
 
+
+/***SVG's***/
 h1 section svg {
   width: 90px;
 }
@@ -359,6 +395,10 @@ h1 section svg:nth-of-type(9) {
   animation-fill-mode: forwards;
 }
 
+
+
+
+/***LETTERS***/
 /* Letter A */
 h1 span:nth-of-type(1) {
   --positie: 10px;
@@ -655,6 +695,7 @@ h1 span:nth-of-type(14) {
   animation-fill-mode: forwards, forwards, forwards;
 }
 
+
 /**** BLAD ****/
 h1 div {
   position: relative;
@@ -709,22 +750,27 @@ h1 div::after {
   transform: translatex(-10%) rotate(-50deg);
 }
 
-/***************************/
-/******* MEDIA QUERY *******/
-/***************************/
 
+
+/***************************/
+/********MEDIA QUERY********/
+/***************************/
+/*Veranden van grote bij bepaalde schermen*/
+
+/*Vanaf 400px (iphone 8plus format*/
 @media screen and (min-width: 25em) {
   h1 {
     transform: scale(0.7);
   }
 }
 
+/*Vanaf 512px (ipad format)*/
 @media screen and (min-width: 32em) {
   h1 {
     transform: scale(0.8);
   }
 }
-
+/*Vanaf 1024px (ipad/desktop format)*/
 @media screen and (min-width: 64em) {
   h1 {
     transform: scale(1.1);
