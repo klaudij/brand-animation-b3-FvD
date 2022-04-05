@@ -127,9 +127,16 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   <img src="readme-images/listempty.png" width="200px" alt="uitkomst opdracht 2"><img src="readme-images/listnotempty.png" width="200px" alt="uitkomst opdracht 2"><br>
 Wat ik geleerd is dat wanneer een ul leeg is dat je zelfs dit ook nog kan stijlen en zodra er een li in de ul zit dat de :empty 'state' verdwijnt. En ik wist helemaal niet dat dit zelfs mogelijk was. Dus ik vond het best leuk en interresant om hiermee te werken. Zelf heb ik er ook nog een ::before en ::after eraan gekoppeld, ik vond het namelijk wat makkelijker om hiermee de 'empty state' te stijlen. <br>
   <br>
-  
-  <img src="readme-images/search.png" width="350px" alt="uitkomst opdracht 2"><br>
+    <img src="readme-images/search.png" width="350px" alt="uitkomst opdracht 2"> <br>
 Wat ik geleerd heb is dat je gebruik kan maken van js libraries. Een voorbeeld van wat ik gebruikt heb is de list.js hiermee kan je de searchbar werkend maken. Ik vond het wel een beetje lastig om dit in mijn opdracht te verwerken want in de voorbeeld opdracht stond de library buiten een funtie en ik (na wat puzzelen eindelijk gevonden) moest de library in 'getPokemon' functie plaatsen om het te laten werken. <br>
+  <br>
+  
+  <img src="readme-images/pokemonhtml.png" width="400px" alt="uitkomst opdracht 2"> <br>
+Wat ik ook geleerd heb is hoe je vanuit de data wat je uit de API heb opgehaald, dit in een statische html elementen gooien en dit weer laden in de HTML. <br>
+  <br>
+  
+  
+  
   <br>
 
   ### Dit was lastig/Is niet gelukt:
