@@ -13,7 +13,9 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   2. https://www.ryadel.com/en/css3-media-query-target-only-ie-ie6-ie11-firefox-chrome-safari-edge/
   3. https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotateY()
   4. https://codepen.io/uurrnn/pen/WNLVdN?editors=1100
-  5. 
+  5.  https://pokeapi.co/api/v2/pokemon?limit=200&offset=0
+  6.  https://hammerjs.github.io
+  7.  https://sortablejs.github.io/Sortable/
 
 
 
