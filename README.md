@@ -116,7 +116,9 @@ Markdown cheat cheet: [Hulp bij het schrijven van Markdown](https://github.com/a
   <summary>uitwerken bij afronden opdracht (voor week 8)</summary>
 
   ### Je uitkomst - karakteristiek screenshot(s):
-  <img src="readme-images/darkmodedesk.jpg" width="475px" alt="uitkomst opdracht 2">
+  <img src="readme-images/darkmodedesk.png" width="475px" alt="uitkomst opdracht 2"><img src="readme-images/teamdeask.png" width="400px" alt="uitkomst opdracht 2"> 
+  <img src="readme-images/lightmodedesk.png" width="475px" alt="uitkomst opdracht 2"><img src="readme-images/desksearch.png" width="400px" alt="uitkomst opdracht 2"> <img src="readme-images/deskfilter.png" width="475px" alt="uitkomst opdracht 2"> <br>
+  <img src="readme-images/phoneteam.png" width="200px" alt="uitkomst opdracht 2"><img src="readme-images/teamphone.png" width="200px" alt="uitkomst opdracht 2"><img src="readme-images/pokedexphone.png" width="200px" alt="uitkomst opdracht 2"><img src="readme-images/pokedex2phone.png" width="200px" alt="uitkomst opdracht 2"> 
 
 
   ### Dit ging goed/Heb ik geleerd: 
